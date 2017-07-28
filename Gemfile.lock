@@ -388,6 +388,7 @@ DEPENDENCIES
   pundit (= 1.1.0)
   rails (= 5.1.2)
   rails_db (= 1.6.0)
+  rest-client (= 2.0.2)
   rollbar (= 2.15.0)
   rspec-instafail (= 1.0.0)
   rspec-json_expectations (= 2.1.0)
