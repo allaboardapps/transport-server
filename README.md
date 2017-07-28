@@ -128,5 +128,4 @@ We are using Postmark
 1. When the `master` branch passes on the CI build, the app will be deployed to the staging server on Heroku
 1. The application is hosted on a Heroku Pipeline named [transport-server](https://dashboard.heroku.com/pipelines/dd583b0f-4721-4cf5-b195-b29f5bee8092)
 1. You can promote the staging app to production (`transport-server-staging` to `transport-server-production`) via `heroku pipelines:promote -r staging`
-1. The deploy tasks are located in the `/lib/tasks/app.rake` file
 1. To create a new version tag the last commit with `git tag -d v[semver]` and `git push --tags origin`
