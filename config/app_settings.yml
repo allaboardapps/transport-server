@@ -1,0 +1,29 @@
+defaults: &defaults
+  app_name: "TranportServer"
+  app_repo_name: "allaboardapps/transport-server"
+  app_server: "development"
+  brand_name: "TranportServer"
+  default_url: "http://localhost:3000"
+  support_email: "support@allaboardapps.com"
+  google_analytics_tracking_id: "UA-xxxxxx-x"
+
+test:
+  <<: *defaults
+  app_server: "test"
+  google_analytics_tracking_id: "UA-xxxxxx-x"
+
+development:
+  <<: *defaults
+  google_analytics_tracking_id: "UA-xxxxxx-x"
+
+staging:
+  <<: *defaults
+  app_server: "staging"
+  default_url: "https://transport-server-staging.herokuapp.com"
+  google_analytics_tracking_id: "UA-xxxxxx-x"
+
+production:
+  <<: *defaults
+  app_server: "production"
+  default_url: "https://transport-server-production.herokuapp.com"
+  google_analytics_tracking_id: "UA-xxxxxx-x"

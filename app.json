@@ -1,0 +1,83 @@
+{
+  "name": "Transport Server",
+  "description": "Transport Server (Ruby on Rails, JavaScript, Postgres, Redis)",
+  "website": "https://www.allaboardapps.com/",
+  "repository": "https://github.com/allaboardapps/transport-server",
+  "stack": "heroku-16",
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "pg_dump $STAGING_DATABASE_URL | psql $DATABASE_URL && bundle exec rake db:migrate"
+  },
+  "env": {
+    "HEROKU_APP_NAME": {
+      "required": true
+    },
+    "HEROKU_PARENT_APP_NAME": {
+      "required": true
+    },
+    "AWS_ACCESS_KEY": {
+      "required": true
+    },
+    "AWS_ACCESS_SECRET": {
+      "required": true
+    },
+    "AWS_REGION": {
+      "required": true
+    },
+    "DB_POOL": {
+      "value": "5"
+    },
+    "LOG_LEVEL": {
+      "value": "info"
+    },
+    "MAILTRAP_USERNAME": {
+      "required": true
+    },
+    "MAILTRAP_PASSWORD": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "value": "false"
+    },
+    "RAILS_MAX_THREADS": {
+      "value": "5"
+    },
+    "REDIS_URL": {
+      "required": true
+    },
+    "RUN_MIGRATIONS": {
+      "required": true
+    },
+    "SECRET_TOKEN": {
+      "generator": "secret"
+    },
+    "STAGING_DATABASE_URL": {
+      "required": true
+    },
+    "WEB_CONCURRENCY": {
+      "value": "4"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "hobby"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "hobby"
+    }
+  },
+  "addons": [
+    "papertrail",
+    "scheduler",
+    "mailtrap",
+    "heroku-postgresql",
+    "redistogo"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
