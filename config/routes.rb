@@ -6,14 +6,11 @@ Rails.application.routes.draw do
   end
 
   require "sidekiq/web"
-  authenticate :user, lambda { |u| u.admin? } do
-    mount Sidekiq::Web, at: "/sidekiq"
-  end
+  mount Sidekiq::Web, at: "/sidekiq"
+
 
   if Rails.env.development? || Rails.env.test?
-    authenticate :user, lambda { |u| u.admin? } do
-      mount RailsDb::Engine, at: "/rails/db", as: "rails_db"
-    end
+    mount RailsDb::Engine, at: "/rails/db", as: "rails_db"
   end
 
   root "static#index"
