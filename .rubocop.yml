@@ -65,7 +65,7 @@ Style/StructInheritance:
   Exclude:
     - "app/policies/**/*"
 
-Style/AlignHash:
+Layout/AlignHash:
   Enabled: false
 
 Style/EmptyMethod:

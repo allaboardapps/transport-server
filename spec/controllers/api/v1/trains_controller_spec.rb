@@ -9,7 +9,7 @@ describe Api::V1::TrainsController, type: :controller do
 
     it "includes at least one of the instances" do
       post :index
-      expect_json("data", { test: "something" })
+      expect_json("data", test: "something")
     end
 
     it "returns a status of 200" do
