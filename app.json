@@ -30,6 +30,9 @@
     "LOG_LEVEL": {
       "value": "info"
     },
+    "MAIL_SYSTEM": {
+      "value": "mailtrap"
+    },
     "MAILTRAP_USERNAME": {
       "required": true
     },

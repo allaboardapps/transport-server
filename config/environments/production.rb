@@ -1,3 +1,6 @@
+require "rest_client"
+require "json"
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -21,7 +24,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -33,12 +36,11 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
+  # config.action_controller.asset_host = "http://assets.example.com"
 
   # Specifies the header that your server uses for sending files.
-  # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
-
+  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
+  # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -57,6 +59,8 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "transport-server_#{Rails.env}"
   config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :postmark
+  config.action_mailer.postmark_settings = { api_token: ENV["POSTMARK_API_TOKEN"] }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -73,8 +77,8 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Use a different logger for distributed setups.
-  # require 'syslog/logger'
-  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
+  # require "syslog/logger"
+  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
@@ -84,4 +88,27 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.time_zone = "UTC"
+
+  if ENV["MAIL_SYSTEM"] == "mailtrap"
+    response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=#{ENV['MAILTRAP_API_TOKEN']}"
+
+    first_inbox = JSON.parse(response)[0] # get first inbox
+
+    ActionMailer::Base.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = {
+      user_name: first_inbox["username"],
+      password: first_inbox["password"],
+      address: first_inbox["domain"],
+      domain: first_inbox["domain"],
+      port: first_inbox["smtp_ports"][0],
+      authentication: :plain
+    }
+    config.action_mailer.default_url_options = { host: "transport-server-staging.herokuapp.com" }
+  elsif ENV["MAIL_SYSTEM"] == "postmark"
+    config.action_mailer.delivery_method = :postmark
+    config.action_mailer.postmark_settings = { api_key: ENV["POSTMARK_API_KEY"] }
+    config.action_mailer.default_url_options = { host: "transport-server-production.herokuapp.com" }
+  end
 end
