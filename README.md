@@ -115,11 +115,11 @@ staging https://git.heroku.com/happenings-server-staging.git (push)
 
 #### Staging
 
-We are using Mailtrap
+* We are using Mailtrap
 
 #### Production
 
-We are using Postmark
+* We are using [Postmark](https://postmarkapp.com/)
 
 ### Deployment
 
