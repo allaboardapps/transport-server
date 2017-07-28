@@ -2,14 +2,18 @@ require "rails_helper"
 
 describe Api::V1::TrainsController, type: :controller do
   describe "#index" do
-    it "returns a response" do
+    it "returns a response with the proper keys" do
       post :index
-      expect_json_sizes("data", 1)
+      expect_json_keys([:version, :response, :shouldEndSession])
+      expect_json_keys("response", [:outputSpeech])
+      expect_json_keys("response.outputSpeech", [:type, :ssml])
     end
 
-    it "includes at least one of the instances" do
+    it "returns a response with the proper data types" do
       post :index
-      expect_json("data", test: "something")
+      expect_json_types(version: :string, response: :object, shouldEndSession: :boolean)
+      expect_json_types("response", outputSpeech: :object)
+      expect_json_types("response.outputSpeech", type: :string, ssml: :string)
     end
 
     it "returns a status of 200" do
