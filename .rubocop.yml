@@ -48,6 +48,9 @@ Style/FrozenStringLiteralComment:
 Style/VariableNumber:
   EnforcedStyle: "snake_case"
 
+Style/SymbolArray:
+  EnforcedStyle: "brackets"
+
 RSpec/MultipleExpectations:
   Enabled: false
 

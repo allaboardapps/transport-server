@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe Api::V1::TrainsController, type: :controller do
+  render_views
+
   describe "#index" do
     it "returns a response with the proper keys" do
       post :index
