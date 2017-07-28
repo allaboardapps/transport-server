@@ -33,9 +33,7 @@ group :development, :test do
   gem "byebug", "9.0.6"
   gem "factory_girl_rails", "4.8.0"
   gem "hakiri", "0.7.2", require: false
-  gem "pry-byebug", "3.4.2"
   gem "pry-rails", "0.3.6"
-  gem "pry-remote", "0.1.8"
   gem "rails_db", "1.6.0"
   gem "rubocop", "0.49.1"
 end
@@ -48,7 +46,7 @@ group :development do
 end
 
 group :test do
-  gem "pry-doc", "0.10.0"
+  gem "airborne", "0.2.13"
   gem "rspec-instafail", "1.0.0", require: false
   gem "rspec-json_expectations", "2.1.0"
   gem "rspec-rails", "3.6.0"

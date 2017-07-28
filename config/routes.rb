@@ -9,4 +9,10 @@ Rails.application.routes.draw do
   mount Sidekiq::Web, at: "/sidekiq"
 
   root "static#index"
+
+  namespace :api, defaults: { format: "json" } do
+    namespace :v1 do
+      post :trains, to: "trains#index"
+    end
+  end
 end
