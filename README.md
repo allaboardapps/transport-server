@@ -113,6 +113,10 @@ staging https://git.heroku.com/happenings-server-staging.git (push)
 * Instead of actually sending the emails, are caught and stored at `/tmp/letter_opener`.
 * You can view and delete the emails at `http://localhost:3000/letter_opener/`
 
+#### Continuous Integration
+
+* Our CI system is [Codeship](https://app.codeship.com/projects/235839)
+
 #### Staging
 
 * We are using Mailtrap
