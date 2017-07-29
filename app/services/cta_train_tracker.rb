@@ -6,5 +6,3 @@ class CtaTrainTracker
     Hash.from_xml(response)
   end
 end
-
-

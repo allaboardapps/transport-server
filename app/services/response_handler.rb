@@ -12,8 +12,6 @@ class ResponseHandler
     "<speak>#{ssml}</speak>"
   end
 
-  private
-
   def self.arrival_phrasing(minutes_out)
     if minutes_out == 1
       "#{minutes_out} minute"

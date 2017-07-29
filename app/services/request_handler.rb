@@ -1,6 +1,12 @@
 class RequestHandler
-  def self.process(request)
+  def self.process(_)
     CtaTrainTracker.request(40380)
+
+    # response["ctatt"]["eta"]
+    # station_name = staNm
+    # station_desc = stpDe
+    # route = rt
+    # arrival_time = arrT
 
     {
       line: "brown",
