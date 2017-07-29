@@ -30,5 +30,8 @@ module TransportServer
 
     # Config for sidekiq
     config.active_job.queue_adapter = :sidekiq
+
+    # Use uuids for all AR private keys
+    config.active_record.primary_key = :uuid
   end
 end
