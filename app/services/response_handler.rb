@@ -22,7 +22,7 @@ class ResponseHandler
   end
 
   def self.intro_phrasing(index)
-    if index.zero? 0
+    if index.zero?
       "The next"
     elsif index == 1
       "A following"
