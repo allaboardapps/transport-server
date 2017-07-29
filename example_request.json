@@ -1,0 +1,37 @@
+{
+  "session": {
+    "sessionId": "SessionId.64b1fdea-173c-4896-ab33-912a43c1db7b",
+    "application": {
+      "applicationId": "amzn1.ask.skill.37a0bd36-fd3a-4236-84ef-ed1d8aa6b612"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "amzn1.ask.account.AEDB4PAT74KR4DS554RNX4GKHZIKVWAPQQJC2WRDLS2YDEOXVAWKS7TFYSNGISOLKNAU3YFG6S5JOIABRKNW2BOYXQATHJDA4RPBMMJEL53TMSRGCY723KLUQUBBD3VVHVNBOSXEXXFYPSLUVGR2Y5SHGNN5HI3LYOYO5L42BP255QKU3YWRICZYH5MYU2CSUMBXMU7LXL7TKII"
+    },
+    "new": true
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.6ef38553-b53d-4a36-a984-22e30b940054",
+    "locale": "en-US",
+    "timestamp": "2017-07-28T23:37:20Z",
+    "intent": {
+      "name": "NextTrain",
+      "slots": {
+        "line": {
+          "name": "line",
+          "value": "brown"
+        },
+        "station": {
+          "name": "station",
+          "value": "damen"
+        },
+        "direction": {
+          "name": "direction",
+          "value": "southbound"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
