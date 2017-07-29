@@ -4,9 +4,10 @@ class ResponseHandler
     line_phrase = "#{response[:line]} line train"
     station_phrase = "#{response[:station]} station"
 
-    ssml = response[:arrivals].map do |arrival|
+    ssml = response[:arrivals].map.with_index do |arrival, index|
+      intro_phrase = intro_phrasing(index)
       arrival_phrase = arrival_phrasing(arrival[:minutes_out])
-      "<p>The next #{direction_phrase} #{line_phrase} should arrive at the #{station_phrase} in #{arrival_phrase}.</p>"
+      "<p>#{intro_phrase} #{direction_phrase} #{line_phrase} should arrive at the #{station_phrase} in #{arrival_phrase}.</p>"
     end.join("")
 
     "<speak>#{ssml}</speak>"
@@ -17,6 +18,16 @@ class ResponseHandler
       "#{minutes_out} minute"
     else
       "#{minutes_out} minutes"
+    end
+  end
+
+  def self.intro_phrasing(index)
+    if index.zero? 0
+      "The next"
+    elsif index == 1
+      "A following"
+    elsif index == 2
+      "A third"
     end
   end
 end
