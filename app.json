@@ -33,12 +33,6 @@
     "MAIL_SYSTEM": {
       "value": "mailtrap"
     },
-    "MAILTRAP_USERNAME": {
-      "required": true
-    },
-    "MAILTRAP_PASSWORD": {
-      "required": true
-    },
     "NPM_CONFIG_PRODUCTION": {
       "value": "false"
     },
@@ -64,11 +58,11 @@
   "formation": {
     "web": {
       "quantity": 1,
-      "size": "hobby"
+      "size": "free"
     },
     "worker": {
       "quantity": 1,
-      "size": "hobby"
+      "size": "free"
     }
   },
   "addons": [
@@ -76,7 +70,7 @@
     "scheduler",
     "mailtrap",
     "heroku-postgresql",
-    "redistogo"
+    "heroku-redis"
   ],
   "buildpacks": [
     {
