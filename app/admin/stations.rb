@@ -16,8 +16,8 @@ ActiveAdmin.register Station do
 
   filter :id_shortened_eq, label: "Short ID"
   filter :id_eq, label: "UUID"
-  filter :transport_system_id, as: :select, collection: TransportSystem.options_for_select
-  filter :direction_id, as: :select, collection:  Direction.options_for_select
+  filter :transport_system, as: :select
+  filter :direction, as: :select
   filter :name
   filter :system_identifier
   filter :stop_name
@@ -42,8 +42,8 @@ ActiveAdmin.register Station do
 
   form do |f|
     f.inputs do
-      f.input :transport_system_id, as: :select, collection: TransportSystem.options_for_select
-      f.input :direction_id, as: :select, collection: Direction.options_for_select
+      f.input :transport_system, as: :select
+      f.input :direction, as: :select
       f.input :name
       f.input :system_identifier
       f.input :stop_name

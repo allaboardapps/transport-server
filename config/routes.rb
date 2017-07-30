@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
+  ActiveAdmin.routes(self)
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

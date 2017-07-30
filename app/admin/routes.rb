@@ -16,7 +16,7 @@ ActiveAdmin.register Route do
 
   filter :id_shortened_eq, label: "Short ID"
   filter :id_eq, label: "UUID"
-  filter :transport_system_id, as: :select, collection: TransportSystem.options_for_select
+  filter :transport_system, as: :select
   filter :name
   filter :system_identifier
   filter :description
@@ -41,7 +41,7 @@ ActiveAdmin.register Route do
 
   form do |f|
     f.inputs do
-      f.input :transport_system_id, as: :select, collection: TransportSystem.options_for_select
+      f.input :transport_system, as: :select
       f.input :name
       f.input :system_identifier
       f.input :description
