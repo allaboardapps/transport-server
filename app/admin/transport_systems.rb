@@ -1,30 +1,26 @@
 ActiveAdmin.register TransportSystem do
   menu parent: "Systems", priority: 100
 
-  permit_params :name, :seed
+  permit_params :name, :acronym, :diction, :fake
 
-  # controller do
-  #   def scoped_collection
-  #     super.includes(:transport_system)
-  #   end
-  # end
-
-  # scope :actives, default: true
+  scope :actives, default: true
+  scope :fakes
 
   config.sort_order = "name asc, created_at desc"
 
-  # filter :id_shortened_eq, label: "Short ID"
+  filter :id_shortened_eq, label: "Short ID"
   filter :id_eq, label: "UUID"
   filter :name
-  filter :seed
+  filter :acronym
+  filter :fake
 
   index do
-    # selectable_column
-    # column "Short ID" do |item|
-    #   link_to item.id_shortened, admin_item_path(item) if item.id_shortened.present?
-    # end
+    column "Short ID" do |item|
+      link_to item.id_shortened, admin_item_path(item) if item.id_shortened.present?
+    end
     column :id
     column :name
+    column :acronym
     column :diction
     column :updated_at
     column :created_at
@@ -34,21 +30,21 @@ ActiveAdmin.register TransportSystem do
   form do |f|
     f.inputs do
       f.input :name
+      f.input :acronym
       f.input :diction
-      f.input :seed
+      f.input :fake
     end
     f.actions
   end
 
   show do |train_line|
     attributes_table do
-      # row "Short ID" do
-      #   humanize_uuid(item.id, 8, false)
-      # end
+      row :id_shortened
       row :id
       row :name
+      row :acronym
       row :diction
-      row :seed
+      row :fake
       row :updated_at
       row :created_at
     end

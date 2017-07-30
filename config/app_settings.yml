@@ -1,8 +1,8 @@
 defaults: &defaults
-  app_name: "TranportServer"
+  app_name: "TransportServer"
   app_repo_name: "allaboardapps/transport-server"
   app_server: "development"
-  brand_name: "TranportServer"
+  brand_name: "TransportServer"
   cta_train_tracker_base_url: "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx"
   default_url: "http://localhost:3000"
   google_analytics_tracking_id: "UA-xxxxxx-x"
