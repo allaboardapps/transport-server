@@ -13,11 +13,11 @@ ActiveAdmin.register_page "Dashboard" do
             li link_to "Directions", admin_directions_path
           end
         end
-        # panel "System" do
-        #   ul do
-        #     li link_to "Users", admin_users_path
-        #   end
-        # end
+        panel "Skills" do
+          ul do
+            li link_to "Skill Document", api_v1_skills_path
+          end
+        end
       end
       column do
         panel "Tech" do

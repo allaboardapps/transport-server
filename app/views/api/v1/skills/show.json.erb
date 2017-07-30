@@ -1,0 +1,275 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "NextTrain",
+      "samples": [
+        "Tell me the next {direction} {station} {line} train",
+        "What is the next {direction} {line} at {station}",
+        "What's the next train at {station} going {direction}",
+        "Next train"
+      ],
+      "slots": [
+        {
+          "name": "direction",
+          "type": "LIST_OF_TRAIN_DIRECTIONS",
+          "samples": []
+        },
+        {
+          "name": "station",
+          "type": "LIST_OF_TRAIN_STATIONS",
+          "samples": [
+            "stop",
+            "station"
+          ]
+        },
+        {
+          "name": "line",
+          "type": "LIST_OF_TRAIN_LINES",
+          "samples": [
+            "line",
+            "train",
+            "line train",
+            "el"
+          ]
+        }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "LIST_OF_TRAIN_DIRECTIONS",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "north",
+            "synonyms": [
+              "northbound",
+              "northern"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "south",
+            "synonyms": [
+              "southbound",
+              "southern"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "east",
+            "synonyms": [
+              "eastbound",
+              "eastern"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "west",
+            "synonyms": [
+              "westbound",
+              "western"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "all",
+            "synonyms": [
+              "anywhere",
+              "both"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "LIST_OF_TRAIN_LINES",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "brown",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "red",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "orange",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "pink",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "purple",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "yellow",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "green",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "blue",
+            "synonyms": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "LIST_OF_TRAIN_STATIONS",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "damen",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "lawrence",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "western",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "montrose",
+            "synonyms": []
+          }
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Elicit.Intent-NextTrain.IntentSlot-direction",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Which direction?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-NextTrain.IntentSlot-station",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What station?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-NextTrain.IntentSlot-line",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What train line?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "NextTrain",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "direction",
+            "type": "LIST_OF_TRAIN_DIRECTIONS",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-NextTrain.IntentSlot-direction"
+            }
+          },
+          {
+            "name": "station",
+            "type": "LIST_OF_TRAIN_STATIONS",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-NextTrain.IntentSlot-station"
+            }
+          },
+          {
+            "name": "line",
+            "type": "LIST_OF_TRAIN_LINES",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-NextTrain.IntentSlot-line"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
