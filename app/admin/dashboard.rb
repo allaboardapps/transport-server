@@ -22,6 +22,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Tech" do
           ul do
+            li link_to "Transport Server Wiki", "https://github.com/allaboardapps/transport-server/wiki", target: "_blank"
             # li link_to "HireFire Monitoring", "/hirefire/#{ENV['HIREFIRE_TOKEN']}/info", target: "_blank" if current_user.admin? && Rails.env.production?
             # li link_to "HireFire Monitoring", "/hirefire/development/info", target: "_blank" if current_user.admin? && Rails.env.development?
             # li link_to "Letter Opener Console", "/letter_opener", target: "_blank" if Rails.env.development?

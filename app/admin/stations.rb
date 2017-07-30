@@ -22,7 +22,7 @@ ActiveAdmin.register Station do
 
   index do
     column "Short ID" do |station|
-      link_to item.id_shortened, admin_item_path(item) if item.id_shortened.present?
+      link_to station.id_shortened, admin_station_path(station) if station.id_shortened.present?
     end
     column :name
     column "System" do |station|
@@ -39,7 +39,7 @@ ActiveAdmin.register Station do
     f.inputs do
       f.input :name
       f.input :station_type
-      f.input :diction
+      f.input :diction, as: :text
       f.input :fake
     end
     f.actions

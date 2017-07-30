@@ -14,8 +14,8 @@ ActiveAdmin.register Direction do
   filter :fake
 
   index do
-    column "Short ID" do |item|
-      link_to item.id_shortened, admin_item_path(item) if item.id_shortened.present?
+    column "Short ID" do |direction|
+      link_to direction.id_shortened, admin_direction_path(direction) if direction.id_shortened.present?
     end
     column :name
     column :diction
@@ -27,7 +27,7 @@ ActiveAdmin.register Direction do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :diction
+      f.input :diction, as: :text
       f.input :fake
     end
     f.actions
