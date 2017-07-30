@@ -20,7 +20,6 @@ ActiveAdmin.register TransportSystem do
     end
     column :name
     column :acronym
-    column :diction
     column :updated_at
     column :created_at
     actions

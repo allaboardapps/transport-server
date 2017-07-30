@@ -19,7 +19,9 @@ ActiveRecord::Schema.define(version: 20170729034655) do
 
   create_table "directions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "id_shortened"
+    t.uuid "transport_system_id"
     t.string "name"
+    t.string "system_identifier"
     t.jsonb "diction"
     t.boolean "fake", default: false
     t.datetime "created_at", null: false
@@ -30,6 +32,8 @@ ActiveRecord::Schema.define(version: 20170729034655) do
     t.string "id_shortened"
     t.uuid "transport_system_id"
     t.string "name"
+    t.string "system_identifier"
+    t.string "description"
     t.string "route_type"
     t.jsonb "diction"
     t.boolean "fake", default: false
@@ -40,7 +44,13 @@ ActiveRecord::Schema.define(version: 20170729034655) do
   create_table "stations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "id_shortened"
     t.uuid "transport_system_id"
+    t.uuid "direction_id"
     t.string "name"
+    t.string "system_identifier"
+    t.string "stop_name"
+    t.string "description"
+    t.string "latitude"
+    t.string "longitude"
     t.string "station_type"
     t.jsonb "diction"
     t.boolean "fake", default: false

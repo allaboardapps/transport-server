@@ -5,6 +5,7 @@ class Station < ApplicationRecord
     update(id_shortened: id.slice(0..7))
   end
 
+  belongs_to :direction
   belongs_to :transport_system
 
   scope :actives, -> { where(fake: false) }

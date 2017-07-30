@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe Route, type: :model do
+  it { is_expected.to belong_to :transport_system }
+
   describe "validations" do
     it "has a valid factory" do
       expect(FactoryGirl.build(:route)).to be_valid

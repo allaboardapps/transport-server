@@ -1,5 +1,5 @@
 ActiveAdmin.register Direction do
-  menu parent: "Systems", priority: 400
+  menu parent: "Systems", priority: 200
 
   permit_params :name, :diction, :fake
 
@@ -10,14 +10,20 @@ ActiveAdmin.register Direction do
 
   filter :id_shortened_eq, label: "Short ID"
   filter :id_eq, label: "UUID"
+  filter :transport_system_id, as: :select, collection: TransportSystem.all.collect { |system| [system.name, system.id] }
   filter :name
+  filter :system_identifier
   filter :fake
 
   index do
     column "Short ID" do |direction|
       link_to direction.id_shortened, admin_direction_path(direction) if direction.id_shortened.present?
     end
+    column "System" do |station|
+      station.transport_system.acronym
+    end
     column :name
+    column "SYS ID", :system_identifier
     column :diction
     column :updated_at
     column :created_at
@@ -26,7 +32,9 @@ ActiveAdmin.register Direction do
 
   form do |f|
     f.inputs do
+      f.input :transport_system_id, as: :select, collection: TransportSystem.all.collect { |system| [system.name, system.id] }
       f.input :name
+      f.input :system_identifier
       f.input :diction, as: :text
       f.input :fake
     end
@@ -37,7 +45,10 @@ ActiveAdmin.register Direction do
     attributes_table do
       row :id_shortened
       row :id
+      row :transport_system
+      row :direction
       row :name
+      row :system_identifier
       row :diction
       row :fake
       row :updated_at
