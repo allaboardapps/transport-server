@@ -54,8 +54,8 @@
 First, you'll need to ask to be added as a collaborator to the Heroku projects for access.
 
 Second, you'll need to connect your local git repo to the heroku repos:
-* connect to staging: `git remote add staging https://git.heroku.com/happenings-server-staging.git`
-* connect to production: `git remote add production https://git.heroku.com/happenings-server-production.git`
+* connect to staging: `git remote add staging https://git.heroku.com/transport-server-staging.git`
+* connect to production: `git remote add production https://git.heroku.com/transport-server-production.git`
 * review your remotes: `git remote -v`
 
 You should see something like this:
@@ -81,6 +81,20 @@ staging https://git.heroku.com/happenings-server-staging.git (push)
 * Confirm ruby version changed: `ruby -v`
 * Create `.ruby-version` file in root dir with ruby version number, ex: `2.4.1`
 
+### App Installation
+
+1. Install and run postgres. Mac users: `brew install postgresql`
+1. Install and run redis.  Mac users: `brew install redis`
+1. Clone the Github repo: `git clone git@github.com:allaboardapps/transport-server.git`
+1. Move to the new directory: `cd transport-server`
+1. Install bundler: `gem install bundler`
+1. Install foreman: `gem install foreman`
+1. Install your gems: `bundle install`
+1. Create and migrate your database: `rake db:create db:migrate`
+1. Run your tests: `bundle exec rspec`
+1. Run rubocop: `rubocop`
+1. If everything passes, you should be good to go.
+
 ### Setup Environment Variables
 
 * Ref: https://github.com/laserlemon/figaro
@@ -97,13 +111,13 @@ staging https://git.heroku.com/happenings-server-staging.git (push)
 
 ### Run Servers
 
-* to run the local server type `rails server` or `rails s`
-* visit `localhost:3000`
+* To run the local server type `rails server` or `rails s`
+* Visit [http://localhost:3000](http://localhost:3000)
 
 ### Quality Control
 
-* run Rails tests: `bundle exec rspec spec`
-* run Rubocop linting: `rubocop`
+* Run Rails tests: `bundle exec rspec spec`
+* Run Rubocop linting: `rubocop`
 
 ### Email Management
 

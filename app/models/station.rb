@@ -1,10 +1,19 @@
 class Station < ApplicationRecord
   validates :name, presence: true
 
-  def self.seed(name: "Damen", seed: true)
+  belongs_to :transport_system
+
+  def self.seed(
+    name: "Damen",
+    station_type: StationTypes::TRAIN,
+    diction: { en: "damen", es: "damen" },
+    seed: true
+  )
+
     station_attrs = {
       name: name,
-      pronunciation: "damen",
+      station_type: station_type,
+      diction: diction,
       seed: seed
     }
 

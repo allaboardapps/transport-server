@@ -17,8 +17,37 @@ ActiveRecord::Schema.define(version: 20170729034655) do
   enable_extension "uuid-ossp"
   enable_extension "pgcrypto"
 
-  create_table "train_lines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "directions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
+    t.jsonb "diction"
+    t.boolean "seed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "routes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "transport_system_id"
+    t.string "name"
+    t.string "route_type"
+    t.jsonb "diction"
+    t.boolean "seed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "transport_system_id"
+    t.string "name"
+    t.string "station_type"
+    t.jsonb "diction"
+    t.boolean "seed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transport_systems", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.jsonb "diction"
     t.boolean "seed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

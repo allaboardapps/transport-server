@@ -19,7 +19,6 @@ ActiveAdmin.register Direction do
   filter :seed
 
   index do
-    # selectable_column
     # column "Short ID" do |item|
     #   link_to item.id_shortened, admin_item_path(item) if item.id_shortened.present?
     # end
