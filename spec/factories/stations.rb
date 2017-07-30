@@ -3,6 +3,6 @@ FactoryGirl.define do
     name "#{Faker::Color.color_name.capitalize} Station"
     station_type { StationTypes::TRAIN }
     diction(en: "something", es: "alguna cosa")
-    seed false
+    fake false
   end
 end

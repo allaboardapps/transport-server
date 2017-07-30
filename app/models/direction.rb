@@ -1,15 +1,10 @@
 class Direction < ApplicationRecord
   validates :name, presence: true
 
-  def self.seed(name: "North", diction: { en: "north", es: "norte" }, seed: true)
-    direction_attrs = {
-      name: name,
-      diction: diction,
-      seed: seed
-    }
-
-    direction = new(direction_attrs)
-    direction.save!
-    direction
+  after_create do
+    update(id_shortened: id.slice(0..7))
   end
+
+  scope :actives, -> { where(fake: false) }
+  scope :fakes, -> { where(fake: true) }
 end
