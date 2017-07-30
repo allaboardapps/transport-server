@@ -10,7 +10,7 @@ ActiveAdmin.register Direction do
 
   filter :id_shortened_eq, label: "Short ID"
   filter :id_eq, label: "UUID"
-  filter :transport_system_id, as: :select, collection: TransportSystem.all.collect { |system| [system.name, system.id] }
+  filter :transport_system_id, as: :select, collection: TransportSystem.options_for_select
   filter :name
   filter :system_identifier
   filter :fake
@@ -32,7 +32,7 @@ ActiveAdmin.register Direction do
 
   form do |f|
     f.inputs do
-      f.input :transport_system_id, as: :select, collection: TransportSystem.all.collect { |system| [system.name, system.id] }
+      f.input :transport_system_id, as: :select, collection: TransportSystem.options_for_select
       f.input :name
       f.input :system_identifier
       f.input :diction, as: :text
