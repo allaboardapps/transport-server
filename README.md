@@ -116,7 +116,8 @@ staging https://git.heroku.com/happenings-server-staging.git (push)
 ### Run Servers
 
 * To run the local server type `rails server` or `rails s`
-* Visit [http://localhost:3000](http://localhost:3000)
+* Visit the [Home page](http://localhost:3000)
+* Visit the [Home page](http://localhost:3000/admin)
 
 ### Quality Control
 
