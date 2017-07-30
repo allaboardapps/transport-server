@@ -30,7 +30,7 @@ ActiveAdmin.register TransportSystem do
     f.inputs do
       f.input :name
       f.input :acronym
-      f.input :diction, as: :text, input_html: { class: "jsoneditor-target" }
+      f.input :diction, as: :text
       f.input :fake
     end
     f.actions
