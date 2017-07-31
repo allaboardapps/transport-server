@@ -60,12 +60,12 @@ Second, you'll need to connect your local git repo to the heroku repos:
 
 You should see something like this:
 ```
-origin  https://github.com/allaboardapps/happenings-server-server.git (fetch)
-origin  https://github.com/allaboardapps/happenings-server-server.git (push)
-production  https://git.heroku.com/happenings-server-production.git (fetch)
-production  https://git.heroku.com/happenings-server-production.git (push)
-staging https://git.heroku.com/happenings-server-staging.git (fetch)
-staging https://git.heroku.com/happenings-server-staging.git (push)
+origin  https://github.com/allaboardapps/transport-server.git (fetch)
+origin  https://github.com/allaboardapps/transport-server.git (push)
+production  https://git.heroku.com/transport-server-production.git (fetch)
+production  https://git.heroku.com/transport-server-production.git (push)
+staging https://git.heroku.com/transport-server-staging.git (fetch)
+staging https://git.heroku.com/transport-server-staging.git (push)
 ```
 ### Setup RVM
 
@@ -89,7 +89,9 @@ staging https://git.heroku.com/happenings-server-staging.git (push)
 
 ### App Installation
 
-1. Install and run postgres. Mac users: `brew install postgresql`
+1. Install and run postgres.
+    1. Mac users: `brew install postgresql`
+    1. Linux users: `sudo apt-get install postgresql` `sudo apt-get install postgresql=server-dev-X.Y` (sub in x.Y for version) `sudo apt-get install libpq-dev build-essential` `sudo apt-get install postgresql-contrib`
 1. Install and run redis.  Mac users: `brew install redis`
 1. Clone the Github repo: `git clone git@github.com:allaboardapps/transport-server.git`
 1. Move to the new directory: `cd transport-server`
@@ -117,7 +119,7 @@ staging https://git.heroku.com/happenings-server-staging.git (push)
 
 * To run the local server type `rails server` or `rails s`
 * Visit the [Home page](http://localhost:3000)
-* Visit the [Home page](http://localhost:3000/admin)
+* Visit the [Admin section](http://localhost:3000/admin)
 
 ### Quality Control
 
