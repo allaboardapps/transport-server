@@ -89,7 +89,9 @@ staging https://git.heroku.com/happenings-server-staging.git (push)
 
 ### App Installation
 
-1. Install and run postgres. Mac users: `brew install postgresql` Linux: `sudo apt-get install postgresql` `sudo apt-get install postgresql=server-dev-X.Y` (sub in x.Y for version) `sudo apt-get install libpq-dev build-essential` `sudo apt-get install postgresql-contrib`
+1. Install and run postgres.
+  * Mac users: `brew install postgresql`
+  * Linux users: `sudo apt-get install postgresql` `sudo apt-get install postgresql=server-dev-X.Y` (sub in x.Y for version) `sudo apt-get install libpq-dev build-essential` `sudo apt-get install postgresql-contrib`
 1. Install and run redis.  Mac users: `brew install redis`
 1. Clone the Github repo: `git clone git@github.com:allaboardapps/transport-server.git`
 1. Move to the new directory: `cd transport-server`
