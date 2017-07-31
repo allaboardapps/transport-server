@@ -119,7 +119,7 @@ staging https://git.heroku.com/transport-server-staging.git (push)
 
 * To run the local server type `rails server` or `rails s`
 * Visit the [Home page](http://localhost:3000)
-* Visit the [Home page](http://localhost:3000/admin)
+* Visit the [Admin section](http://localhost:3000/admin)
 
 ### Quality Control
 
