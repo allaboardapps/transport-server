@@ -27,7 +27,6 @@ group :production do
 end
 
 group :development, :test do
-  gem "axlsx_rails", "0.5.1"
   gem "brakeman", "3.7.0", require: false
   gem "bundler-audit", "0.6.0", require: false
   gem "byebug", "9.0.6"
