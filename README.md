@@ -60,12 +60,12 @@ Second, you'll need to connect your local git repo to the heroku repos:
 
 You should see something like this:
 ```
-origin  https://github.com/allaboardapps/happenings-server-server.git (fetch)
-origin  https://github.com/allaboardapps/happenings-server-server.git (push)
-production  https://git.heroku.com/happenings-server-production.git (fetch)
-production  https://git.heroku.com/happenings-server-production.git (push)
-staging https://git.heroku.com/happenings-server-staging.git (fetch)
-staging https://git.heroku.com/happenings-server-staging.git (push)
+origin  https://github.com/allaboardapps/transport-server.git (fetch)
+origin  https://github.com/allaboardapps/transport-server.git (push)
+production  https://git.heroku.com/transport-server-production.git (fetch)
+production  https://git.heroku.com/transport-server-production.git (push)
+staging https://git.heroku.com/transport-server-staging.git (fetch)
+staging https://git.heroku.com/transport-server-staging.git (push)
 ```
 ### Setup RVM
 
