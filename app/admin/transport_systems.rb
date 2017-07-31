@@ -15,13 +15,11 @@ ActiveAdmin.register TransportSystem do
   filter :fake
 
   index do
-    column "Short ID" do |item|
-      link_to item.id_shortened, admin_item_path(item) if item.id_shortened.present?
+    column "Short ID" do |transport_system|
+      link_to transport_system.id_shortened, admin_transport_system_path(transport_system) if transport_system.id_shortened.present?
     end
-    column :id
     column :name
     column :acronym
-    column :diction
     column :updated_at
     column :created_at
     actions
@@ -31,13 +29,13 @@ ActiveAdmin.register TransportSystem do
     f.inputs do
       f.input :name
       f.input :acronym
-      f.input :diction
+      f.input :diction, as: :text
       f.input :fake
     end
     f.actions
   end
 
-  show do |train_line|
+  show do |transport_system|
     attributes_table do
       row :id_shortened
       row :id

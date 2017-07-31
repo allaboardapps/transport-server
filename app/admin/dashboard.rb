@@ -13,15 +13,16 @@ ActiveAdmin.register_page "Dashboard" do
             li link_to "Directions", admin_directions_path
           end
         end
-        # panel "System" do
-        #   ul do
-        #     li link_to "Users", admin_users_path
-        #   end
-        # end
+        panel "Skills" do
+          ul do
+            li link_to "Skill Document", api_v1_skills_path
+          end
+        end
       end
       column do
         panel "Tech" do
           ul do
+            li link_to "Transport Server Wiki", "https://github.com/allaboardapps/transport-server/wiki", target: "_blank"
             # li link_to "HireFire Monitoring", "/hirefire/#{ENV['HIREFIRE_TOKEN']}/info", target: "_blank" if current_user.admin? && Rails.env.production?
             # li link_to "HireFire Monitoring", "/hirefire/development/info", target: "_blank" if current_user.admin? && Rails.env.development?
             # li link_to "Letter Opener Console", "/letter_opener", target: "_blank" if Rails.env.development?

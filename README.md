@@ -81,6 +81,12 @@ staging https://git.heroku.com/happenings-server-staging.git (push)
 * Confirm ruby version changed: `ruby -v`
 * Create `.ruby-version` file in root dir with ruby version number, ex: `2.4.1`
 
+### Setup Environment Variables
+
+* Ref: https://github.com/laserlemon/figaro
+* Note: We use the figaro gem to store and access env variables out of the reach of source control
+* Note: You will need to retrieve the valid variables from a team member and place the contents in the `/config/application.yml` file.
+
 ### App Installation
 
 1. Install and run postgres. Mac users: `brew install postgresql` Linux: `sudo apt-get install postgresql` `sudo apt-get install postgresql=server-dev-X.Y` (sub in x.Y for version) `sudo apt-get install libpq-dev build-essential` `sudo apt-get install postgresql-contrib`
@@ -95,11 +101,9 @@ staging https://git.heroku.com/happenings-server-staging.git (push)
 1. Run rubocop: `rubocop`
 1. If everything passes, you should be good to go.
 
-### Setup Environment Variables
+### Data Setup
 
-* Ref: https://github.com/laserlemon/figaro
-* Note: We use the figaro gem to store and access env variables out of the reach of source control
-* Note: You will need to retrieve the valid variables from a team member and place the contents in the `/config/application.yml` file.
+* Populate the system with some basic data: `rake db:seed`
 
 ### Setup Foreman
 
@@ -112,7 +116,8 @@ staging https://git.heroku.com/happenings-server-staging.git (push)
 ### Run Servers
 
 * To run the local server type `rails server` or `rails s`
-* Visit [http://localhost:3000](http://localhost:3000)
+* Visit the [Home page](http://localhost:3000)
+* Visit the [Home page](http://localhost:3000/admin)
 
 ### Quality Control
 

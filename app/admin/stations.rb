@@ -1,5 +1,5 @@
 ActiveAdmin.register Station do
-  menu parent: "Systems", priority: 100
+  menu parent: "Systems", priority: 400
 
   permit_params :name, :station_type, :diction, :fake
 
@@ -16,20 +16,25 @@ ActiveAdmin.register Station do
 
   filter :id_shortened_eq, label: "Short ID"
   filter :id_eq, label: "UUID"
+  filter :transport_system, as: :select
+  filter :direction, as: :select
   filter :name
+  filter :system_identifier
+  filter :stop_name
+  filter :description
   filter :station_type
   filter :fake
 
   index do
     column "Short ID" do |station|
-      link_to item.id_shortened, admin_item_path(item) if item.id_shortened.present?
+      link_to station.id_shortened, admin_station_path(station) if station.id_shortened.present?
     end
-    column :name
     column "System" do |station|
       station.transport_system.acronym
     end
+    column :name
+    column :direction
     column :station_type
-    column :diction
     column :updated_at
     column :created_at
     actions
@@ -37,9 +42,16 @@ ActiveAdmin.register Station do
 
   form do |f|
     f.inputs do
+      f.input :transport_system, as: :select
+      f.input :direction, as: :select
       f.input :name
+      f.input :system_identifier
+      f.input :stop_name
+      f.input :description
       f.input :station_type
-      f.input :diction
+      f.input :latitude
+      f.input :longitude
+      f.input :diction, as: :text
       f.input :fake
     end
     f.actions
@@ -49,11 +61,15 @@ ActiveAdmin.register Station do
     attributes_table do
       row :id_shortened
       row :id
-      row "System" do
-        station.transport_system.acronym
-      end
+      row :system_identifier
+      row :transport_system
       row :name
+      row :stop_name
+      row :description
+      row :direction
       row :station_type
+      row :latitude
+      row :longitude
       row :diction
       row :fake
       row :updated_at

@@ -1,6 +1,9 @@
 require "rails_helper"
 
 describe Station, type: :model do
+  it { is_expected.to belong_to :transport_system }
+  it { is_expected.to belong_to :direction }
+
   describe "validations" do
     it "has a valid factory" do
       expect(FactoryGirl.build(:station)).to be_valid

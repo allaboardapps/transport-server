@@ -9,4 +9,8 @@ class Route < ApplicationRecord
 
   scope :actives, -> { where(fake: false) }
   scope :fakes, -> { where(fake: true) }
+
+  def self.options_for_select
+    all.map { |item| [item.name, item.id] }
+  end
 end
