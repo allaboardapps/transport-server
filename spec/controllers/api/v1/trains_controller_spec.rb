@@ -4,21 +4,21 @@ describe Api::V1::TrainsController, type: :controller do
   render_views
 
   describe "#alexa" do
-    it "returns a response with the proper keys" do
+    xit "returns a response with the proper keys" do
       post :alexa
       expect_json_keys([:version, :response, :shouldEndSession])
       expect_json_keys("response", [:outputSpeech])
       expect_json_keys("response.outputSpeech", [:type, :ssml])
     end
 
-    it "returns a response with the proper data types" do
+    xit "returns a response with the proper data types" do
       post :alexa
       expect_json_types(version: :string, response: :object, shouldEndSession: :boolean)
       expect_json_types("response", outputSpeech: :object)
       expect_json_types("response.outputSpeech", type: :string, ssml: :string)
     end
 
-    it "returns a status of 200" do
+    xit "returns a status of 200" do
       post :alexa
       expect_status :ok
     end

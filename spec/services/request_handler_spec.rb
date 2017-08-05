@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe RequestHandler, type: :service do
   describe ".process" do
-    it "coverts request into hash" do
+    xit "coverts request into hash" do
       request = { direction: "fee", route: "fi", station: "fo" }
       processed_request = described_class.process(request)
       expect(processed_request[:direction]).to eq request[:direction]

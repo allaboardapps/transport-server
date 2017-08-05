@@ -3,7 +3,7 @@
   "response": {
     "outputSpeech": {
       "type": "SSML",
-      "ssml": "<%= raw @processed_response %>"
+      "ssml": "<%= raw @processed_response[:content] %>"
     }
   },
   "shouldEndSession": true

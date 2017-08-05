@@ -24,11 +24,22 @@ class RequestHandler
     #     }
     #   ]
     # }
+    # request[:intent][:slots][Slots::DIRECTION]["value"]
 
-    {
-      direction: request[:direction],
-      route: request[:route],
-      station: request[:station]
-    }
+    if request[:intent][:slots][Slots::DIRECTION]["value"].empty?
+      { state: "in_progress", content: Slots::DIRECTION }
+    elsif request[:intent][:slots][Slots::ROUTE]["value"].empty?
+      { state: "in_progress", content: Slots::ROUTE }
+    elsif request[:intent][:slots][Slots::STATION]["value"].empty?
+      { state: "in_progress", content: Slots::STATION }
+    else
+      slot_values = {
+        direction: request[:direction],
+        route: request[:route],
+        station: request[:station]
+      }
+
+      { state: "completed", content: slot_values }
+    end
   end
 end
