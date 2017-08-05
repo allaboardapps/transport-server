@@ -27,7 +27,7 @@ ActiveAdmin.register_page "Dashboard" do
             # li link_to "HireFire Monitoring", "/hirefire/development/info", target: "_blank" if current_user.admin? && Rails.env.development?
             # li link_to "Letter Opener Console", "/letter_opener", target: "_blank" if Rails.env.development?
             li link_to "Rails DB Dashboard", rails_db_path, target: "_blank" if Rails.env.development?
-            li link_to "Sidekiq Dashboard", sidekiq_web_path, target: "_blank"
+            # li link_to "Sidekiq Dashboard", sidekiq_web_path, target: "_blank"
           end
         end
       end

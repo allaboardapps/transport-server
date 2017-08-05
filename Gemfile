@@ -19,7 +19,6 @@ gem "rest-client", "2.0.2"
 gem "rollbar", "2.15.0"
 gem "sass-rails", "5.0.6"
 gem "settingslogic", "2.0.9"
-gem "sidekiq", "5.0.4"
 gem "uglifier", "3.2.0"
 
 group :production do
@@ -50,7 +49,6 @@ group :test do
   gem "rspec-json_expectations", "2.1.0"
   gem "rspec-rails", "3.6.0"
   gem "rspec-retry", "0.5.4"
-  gem "rspec-sidekiq", "3.0.3"
   gem "rubocop-rspec", "1.15.1"
   gem "shoulda-matchers", "3.1.2"
 end
