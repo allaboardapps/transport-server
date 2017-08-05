@@ -51,6 +51,9 @@ Style/VariableNumber:
 Style/SymbolArray:
   EnforcedStyle: "brackets"
 
+Style/AsciiComments:
+  Enabled: false
+
 RSpec/MultipleExpectations:
   Enabled: false
 

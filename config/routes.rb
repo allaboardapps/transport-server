@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: "json" } do
     namespace :v1 do
-      post :trains, to: "trains#index"
+      post "trains/alexa", to: "trains#alexa"
       get :skills, to: "skills#show"
     end
   end
