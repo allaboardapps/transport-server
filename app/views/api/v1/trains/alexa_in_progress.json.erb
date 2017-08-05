@@ -2,20 +2,9 @@
   "version": "1.0",
   "sessionAttributes": {},
   "response": {
-    "shouldEndSession": false,
     "directives": [
       {
-        "type": "Dialog.Delegate",
-        "updatedIntent": {
-          "name": "NextTrain",
-          "confirmationStatus": "NONE",
-          "slots": {
-            "string": {
-              "name": "<%= @processed_response[:content] %>",
-              "confirmationStatus": "NONE"
-            }
-          }
-        }
+        "type": "Dialog.Delegate"
       }
     ]
   }
