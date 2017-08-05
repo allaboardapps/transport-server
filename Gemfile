@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 ruby "2.4.1"
-gem "rails", "5.1.2"
+gem "rails", "5.1.3"
 
 # global
 # gem install bundler
@@ -23,7 +23,7 @@ gem "sidekiq", "5.0.4"
 gem "uglifier", "3.2.0"
 
 group :production do
-  gem "scout_apm", "2.1.27"
+  gem "scout_apm", "2.1.29"
 end
 
 group :development, :test do
