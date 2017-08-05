@@ -12,10 +12,10 @@ class ResponseHandler
 
     if request[:state] == "in_progress"
       request
-    else
-      direction_phrase = response[:content][:direction]
-      route_phrase = response[:content][:route]
-      station_phrase = response[:content][:station]
+    elsif request[:state] == "completed"
+      direction_phrase = request[:content][:direction]
+      route_phrase = request[:content][:route]
+      station_phrase = request[:content][:station]
       ssml = "<speak>"\
           "<p>direction #{direction_phrase}</p>"\
           "<p>route #{route_phrase}</p>"\
