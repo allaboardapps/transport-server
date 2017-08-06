@@ -6,6 +6,7 @@ class Route < ApplicationRecord
   end
 
   belongs_to :transport_system
+  has_many :stations
 
   scope :actives, -> { where(fake: false) }
   scope :fakes, -> { where(fake: true) }

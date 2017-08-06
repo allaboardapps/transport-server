@@ -18,8 +18,10 @@ ActiveAdmin.register Station do
   filter :id_eq, label: "UUID"
   filter :transport_system, as: :select
   filter :direction, as: :select
+  filter :route, as: :select
   filter :name
-  filter :system_identifier
+  filter :mapid
+  filter :stopid
   filter :stop_name
   filter :description
   filter :station_type
@@ -34,6 +36,7 @@ ActiveAdmin.register Station do
     end
     column :name
     column :direction
+    column :route
     column :station_type
     column :updated_at
     column :created_at
@@ -44,8 +47,10 @@ ActiveAdmin.register Station do
     f.inputs do
       f.input :transport_system, as: :select
       f.input :direction, as: :select
+      f.input :route, as: :select
       f.input :name
-      f.input :system_identifier
+      f.input :mapid
+      f.input :stopid
       f.input :stop_name
       f.input :description
       f.input :station_type
@@ -61,12 +66,14 @@ ActiveAdmin.register Station do
     attributes_table do
       row :id_shortened
       row :id
-      row :system_identifier
+      row :mapid
+      row :stopid
       row :transport_system
       row :name
       row :stop_name
       row :description
       row :direction
+      row :route
       row :station_type
       row :latitude
       row :longitude
