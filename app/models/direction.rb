@@ -18,7 +18,7 @@ class Direction < ApplicationRecord
   # TODO: Remove database check for scale (use module)
   def self.valid?(name:)
     return false if name.blank?
-    return true if Direction.ci_search(name: name).present?
+    return true if ci_search(name: name).present?
     false
   end
 

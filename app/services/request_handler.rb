@@ -30,11 +30,11 @@ class RequestHandler
     route = request[:intent][:slots][Slots::ROUTE][:value]
     station = request[:intent][:slots][Slots::STATION][:value]
 
-    if direction.blank? || !Direction.valid?()
+    if !Direction.valid?(name: direction)
       { state: "in_progress", content: Slots::DIRECTION }
-    elsif route.blank? || !Route.valid?()
+    elsif !Route.valid?(name: route)
       { state: "in_progress", content: Slots::ROUTE }
-    elsif station.blank? || !Station.valid?()
+    elsif !Station.valid?(name: station)
       { state: "in_progress", content: Slots::STATION }
     else
       slot_values = {
