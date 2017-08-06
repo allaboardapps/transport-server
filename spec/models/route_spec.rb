@@ -16,31 +16,31 @@ describe Route, type: :model do
 
   describe ".valid?" do
     it "returns false if the route is blank" do
-      FactoryGirl.create :route, name: "Purple"
+      FactoryGirl.create :route, name: "Purple", lowerid: "purple"
       test_subject = nil
       expect(described_class.valid?(name: test_subject)).to be_falsey
     end
 
     it "returns false if the route is empty" do
-      FactoryGirl.create :route, name: "Brown"
+      FactoryGirl.create :route, name: "Brown", lowerid: "brown"
       test_subject = ""
       expect(described_class.valid?(name: test_subject)).to be_falsey
     end
 
     it "returns true if the route name matches an available route" do
-      FactoryGirl.create :route, name: "Red"
+      FactoryGirl.create :route, name: "Red", lowerid: "red"
       test_subject = "red"
       expect(described_class.valid?(name: test_subject)).to be_truthy
     end
 
     it "returns true, regardless of case" do
-      FactoryGirl.create :route, name: "Blue"
+      FactoryGirl.create :route, name: "Blue", lowerid: "blue"
       test_subject = "bLuE"
       expect(described_class.valid?(name: test_subject)).to be_truthy
     end
 
     it "returns false if the name does not match an available submission" do
-      FactoryGirl.create :route, name: "Green"
+      FactoryGirl.create :route, name: "Green", lowerid: "green"
       test_subject = "geez"
       expect(described_class.valid?(name: test_subject)).to be_falsey
     end
@@ -48,31 +48,31 @@ describe Route, type: :model do
 
   describe ".ci_search" do
     it "returns no results if the name is blank" do
-      FactoryGirl.create :route, name: "North"
+      FactoryGirl.create :route, name: "Purple", lowerid: "purple"
       test_subject = nil
       expect(described_class.ci_search(name: test_subject)).to be_nil
     end
 
     it "returns no results if the name is empty" do
-      FactoryGirl.create :route, name: "North"
+      FactoryGirl.create :route, name: "Yellow", lowerid: "yellow"
       test_subject = ""
       expect(described_class.ci_search(name: test_subject)).to be_nil
     end
 
     it "returns true if the route name matches an available route" do
-      FactoryGirl.create :route, name: "Brown"
+      FactoryGirl.create :route, name: "Brown", lowerid: "brown"
       test_subject = "brown"
       expect(described_class.ci_search(name: test_subject)).not_to be_nil
     end
 
     it "returns true if the route name matches an available route, regardless of case" do
-      FactoryGirl.create :route, name: "Red"
+      FactoryGirl.create :route, name: "Red", lowerid: "red"
       test_subject = "reD"
       expect(described_class.ci_search(name: test_subject)).not_to be_nil
     end
 
     it "returns false if the route name does not match an available route" do
-      FactoryGirl.create :route, name: "Yellow"
+      FactoryGirl.create :route, name: "Yellow", lowerid: "yellow"
       test_subject = "Yow"
       expect(described_class.ci_search(name: test_subject)).to be_nil
     end
