@@ -51,7 +51,8 @@ csv.each do |row|
   test = Station.create_with(
     transport_system: system,
     name: row["STATION_NAME"],
-    system_identifier: row["STOP_ID"],
+    stopid: row["STOP_ID"],
+    mapid: row["MAP_ID"],
     stop_name: row["STOP_NAME"],
     direction: direction,
     description: row["STATION_DESCRIPTIVE_NAME"],

@@ -1,8 +1,17 @@
 class CtaTrainTracker
-  def self.request(mapid)
+  def self.request(mapid:)
     api_key = ENV["CTA_TRAIN_TRACKER_API_KEY"]
     url = "#{AppSettings.cta_train_tracker_base_url}?key=#{api_key}&mapid=#{mapid}" # 40380
     response = RestClient.get(url)
     Hash.from_xml(response)
   end
+
+  def self.get_mapid(route:, station:, direction:)
+
+  end
 end
+
+# receive route, station, and direction
+# retrieve the mapid of the location
+# retrieve the next scheduled train times for the location
+# hand off to the phrase builder
