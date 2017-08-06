@@ -19,6 +19,7 @@ ActiveAdmin.register Route do
   filter :transport_system, as: :select
   filter :name
   filter :system_identifier
+  filter :lowerid
   filter :description
   filter :route_type
   filter :fake
@@ -44,6 +45,7 @@ ActiveAdmin.register Route do
       f.input :transport_system, as: :select
       f.input :name
       f.input :system_identifier
+      f.input :lowerid
       f.input :description
       f.input :route_type
       f.input :diction, as: :text
@@ -59,6 +61,7 @@ ActiveAdmin.register Route do
       row :transport_system
       row :name
       row :system_identifier
+      row :lowerid
       row :description
       row :route_type
       row :diction

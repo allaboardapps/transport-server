@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :station do
     name "18th (54th/Cermak-bound)"
-    system_identifier "30162"
+    mapid 4000
+    stopid 3000
     stop_name "18th (54th/Cermak-bound)"
     description "18th (Pink Line)"
     latitude { Faker::Address.latitude }

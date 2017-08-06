@@ -1,6 +1,5 @@
 class ResponseHandler
   def self.process(processed_request)
-
     dialog_state = processed_request[:state]
 
     if dialog_state == AlexaDialogStates::IN_PROGRESS

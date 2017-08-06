@@ -7,11 +7,6 @@ class CtaTrainTracker
   end
 
   def self.get_mapid(route:, station:, direction:)
-
+    CtaTrainLocation.find_by(route: route, station: station, direction: direction)
   end
 end
-
-# receive route, station, and direction
-# retrieve the mapid of the location
-# retrieve the next scheduled train times for the location
-# hand off to the phrase builder

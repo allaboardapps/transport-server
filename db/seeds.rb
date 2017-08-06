@@ -31,6 +31,7 @@ csv.each do |row|
     transport_system: system,
     name: row["NAME"],
     system_identifier: row["SYSTEM_IDENTIFIER"],
+    lowerid: row["LOWER_ID"],
     description: row["DESCRIPTION"],
     route_type: RouteTypes::TRAIN,
     diction: { en: row["NAME"], es: row["NAME"] },
@@ -45,22 +46,29 @@ file_path = Rails.root.join("db", "imports", "cta_list_of_train_stops_2015-04-30
 csv_text = open(file_path)
 csv = CSV.parse(csv_text, headers: true)
 csv.each do |row|
+  route = Route.find_by(lowerid: row["ROUTE_COLOR"])
   direction = Direction.find_by(system_identifier: row["DIRECTION_ID"])
   lat_lon = row["Location"].gsub(/[()| ]/, "").split(",")
 
-  test = Station.create_with(
+  Station.create_with(
     transport_system: system,
     name: row["STATION_NAME"],
     stopid: row["STOP_ID"],
     mapid: row["MAP_ID"],
     stop_name: row["STOP_NAME"],
     direction: direction,
+    route: route,
     description: row["STATION_DESCRIPTIVE_NAME"],
     latitude: lat_lon[0],
     longitude: lat_lon[1],
     station_type: StationTypes::TRAIN,
     diction: { en: row["STATION_NAME"], es: row["STATION_NAME"] },
     fake: false
-  ).find_or_create_by(system_identifier: row["STOP_ID"])
+  ).find_or_create_by(stopid: row["STOP_ID"], mapid: row["MAP_ID"], route_id: route.id)
 end
 puts "END:   Create stations, Actives Count: #{Station.actives.count}, Fakes Count: #{Station.fakes.count}"
+
+# REFRESH Materialized Views
+puts "BEGIN: Refresh Mat Views"
+CtaTrainLocation.refresh
+puts "END:   Refresh Mat Views"

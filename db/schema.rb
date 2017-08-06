@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170729034655) do
+ActiveRecord::Schema.define(version: 20170806022657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170729034655) do
     t.uuid "transport_system_id"
     t.string "name"
     t.string "system_identifier"
+    t.string "lowerid"
     t.string "description"
     t.string "route_type"
     t.jsonb "diction"
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170729034655) do
     t.string "id_shortened"
     t.uuid "transport_system_id"
     t.uuid "direction_id"
+    t.uuid "route_id"
     t.string "name"
     t.integer "mapid"
     t.integer "stopid"
@@ -68,5 +70,25 @@ ActiveRecord::Schema.define(version: 20170729034655) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+
+  create_view "cta_train_locations", materialized: true,  sql_definition: <<-SQL
+      SELECT row_number() OVER () AS id,
+      stations.mapid,
+      stations.stopid,
+      stations.name AS station_name,
+      routes.lowerid AS route_name,
+      directions.name AS direction_name,
+      stations.id AS station_id,
+      routes.id AS route_id,
+      directions.id AS direction_id,
+      stations.diction AS station_diction,
+      routes.diction AS route_diction,
+      directions.diction AS direction_diction
+     FROM ((stations
+       JOIN directions ON ((directions.id = stations.direction_id)))
+       JOIN routes ON ((routes.id = stations.route_id)))
+    WHERE ((stations.fake = false) AND (routes.fake = false) AND (directions.fake = false));
+  SQL
 
 end
