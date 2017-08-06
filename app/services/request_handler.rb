@@ -25,7 +25,6 @@ class RequestHandler
     #   ]
     # }
     # request[:intent][:slots][Slots::DIRECTION]["value"]
-
     if request[:intent][:slots][Slots::DIRECTION][:value].blank?
       { state: "in_progress", content: Slots::DIRECTION }
     elsif request[:intent][:slots][Slots::ROUTE][:value].blank?

@@ -4,7 +4,7 @@ class ResponseHandler
 
     if dialog_state == AlexaDialogStates::IN_PROGRESS
       {
-        state: AlexaDialogStates::COMPLETED,
+        state: AlexaDialogStates::IN_PROGRESS,
         content: processed_request[:content]
       }
     elsif dialog_state == AlexaDialogStates::COMPLETED
