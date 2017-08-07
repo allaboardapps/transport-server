@@ -1,5 +1,5 @@
 SELECT
-  row_number() OVER () AS id PRIMARY KEY,
+  row_number() OVER () AS id,
   stations.mapid AS mapid,
   stations.stopid AS stopid,
   stations.name AS station_name,
@@ -22,4 +22,4 @@ INNER JOIN
 WHERE
   stations.fake = false
   AND routes.fake = false
-  AND directions.fake = false
+  AND directions.fake = false;
