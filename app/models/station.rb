@@ -16,9 +16,15 @@ class Station < ApplicationRecord
     all.map { |item| [item.name, item.id] }
   end
 
-  def self.valid?(name:)
+  def self.name_valid?(name:)
     return false if name.blank?
     return true if ci_search(name: name).present?
+    false
+  end
+
+  def self.stopid_valid?(stopid:)
+    return false if stopid.blank?
+    return true if find_by(stopid: stopid).present?
     false
   end
 

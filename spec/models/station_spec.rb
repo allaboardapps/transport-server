@@ -19,31 +19,31 @@ describe Station, type: :model do
     it "returns false if the station is blank" do
       FactoryGirl.create :station, name: "Damen"
       test_subject = nil
-      expect(described_class.valid?(name: test_subject)).to be_falsey
+      expect(described_class.name_valid?(name: test_subject)).to be_falsey
     end
 
     it "returns false if the station is empty" do
       FactoryGirl.create :station, name: "Western"
       test_subject = ""
-      expect(described_class.valid?(name: test_subject)).to be_falsey
+      expect(described_class.name_valid?(name: test_subject)).to be_falsey
     end
 
     it "returns true if the station name matches an available station" do
       FactoryGirl.create :station, name: "Clark/Division"
       test_subject = "clark/division"
-      expect(described_class.valid?(name: test_subject)).to be_truthy
+      expect(described_class.name_valid?(name: test_subject)).to be_truthy
     end
 
     it "returns true, regardless of case" do
       FactoryGirl.create :station, name: "Bryn Mawr"
       test_subject = "bryn mawr"
-      expect(described_class.valid?(name: test_subject)).to be_truthy
+      expect(described_class.name_valid?(name: test_subject)).to be_truthy
     end
 
     it "returns false if the name does not match an available submission" do
       FactoryGirl.create :station, name: "Belmont"
       test_subject = "geez"
-      expect(described_class.valid?(name: test_subject)).to be_falsey
+      expect(described_class.name_valid?(name: test_subject)).to be_falsey
     end
   end
 
@@ -76,6 +76,32 @@ describe Station, type: :model do
       FactoryGirl.create :station, name: "O'Hare"
       test_subject = "ouch"
       expect(described_class.ci_search(name: test_subject)).to be_nil
+    end
+  end
+
+  describe ".stopid_valid?" do
+    it "returns false if the stopid is blank" do
+      FactoryGirl.create :station, name: "Damen", stopid: 1234
+      test_subject = nil
+      expect(described_class.stopid_valid?(stopid: test_subject)).to be_falsey
+    end
+
+    it "returns false if the stopid is empty" do
+      FactoryGirl.create :station, name: "Western", stopid: 1234
+      test_subject = ""
+      expect(described_class.stopid_valid?(stopid: test_subject)).to be_falsey
+    end
+
+    it "returns true if the stopid matches an available station" do
+      FactoryGirl.create :station, name: "Clark/Division", stopid: 1234
+      test_subject = 1234
+      expect(described_class.stopid_valid?(stopid: test_subject)).to be_truthy
+    end
+
+    it "returns false if the stopid does not match an available submission" do
+      FactoryGirl.create :station, name: "Belmont", stopid: 1234
+      test_subject = 3425
+      expect(described_class.stopid_valid?(stopid: test_subject)).to be_falsey
     end
   end
 end
