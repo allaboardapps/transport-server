@@ -25,8 +25,9 @@ class RequestHandler
     #   ]
     # }
     # request[:intent][:slots][Slots::DIRECTION]["value"]
+    intent = request[:intent][:name]
 
-    if request[:intent] == Intents::STATION_DIRECT
+    if intent == Intents::STATION_DIRECT
       direction = request[:intent][:slots][Slots::DIRECTION][:value]
       station_id = request[:intent][:slots][Slots::STATION_ID][:value]
 
@@ -36,7 +37,7 @@ class RequestHandler
           state: AlexaDialogStates::IN_PROGRESS,
           content: Slots::DIRECTION
         }
-      elsif !Station.stopid_valid?(stopid: stopid)
+      elsif !Station.stopid_valid?(stopid: station_id)
         {
           intent: Intents::STATION_DIRECT,
           state: AlexaDialogStates::IN_PROGRESS,
@@ -45,7 +46,7 @@ class RequestHandler
       else
         slot_values = {
           direction: direction,
-          station: station_id
+          station_id: station_id
         }
 
         {
@@ -54,7 +55,7 @@ class RequestHandler
           content: slot_values
         }
       end
-    elsif request[:intent] == Intents::NEXT_TRAIN
+    elsif intent == Intents::NEXT_TRAIN
       direction = request[:intent][:slots][Slots::DIRECTION][:value]
       route = request[:intent][:slots][Slots::ROUTE][:value]
       station = request[:intent][:slots][Slots::STATION][:value]

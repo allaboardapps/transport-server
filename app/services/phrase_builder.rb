@@ -1,14 +1,32 @@
 class PhraseBuilder
   def self.create(request)
-    direction_phrase = request[:content][:direction]
-    route_phrase = request[:content][:route]
-    station_phrase = request[:content][:station]
+    intent = request[:intent]
 
-    "<speak>"\
-      "<p>direction #{direction_phrase}</p>"\
-      "<p>route #{route_phrase}</p>"\
-      "<p>station #{station_phrase}</p>"\
-    "</speak>"
+    if intent == Intents::STATION_DIRECT
+      station_id = request[:content][:station_id]
+
+      station_phrase = station_id
+      mapid_phrase = Station.find_by(stopid: station_id).mapid
+      direction_phrase = request[:content][:direction]
+
+      "<speak>"\
+        "<p>your station i.d. is #{station_phrase}</p>"\
+        "<p>your direction is #{direction_phrase}</p>"\
+        "<p>your map i.d. is <say-as interpret-as='digits'>#{mapid_phrase}</say-as></p>"\
+        "<p><say-as interpret-as='interjection'>vroom</say-as></p>"\
+      "</speak>"
+    elsif intent == Intents::NEXT_TRAIN
+      direction_phrase = request[:content][:direction]
+      route_phrase = request[:content][:route]
+      station_phrase = request[:content][:station]
+
+      "<speak>"\
+        "<p>your route is #{route_phrase}</p>"\
+        "<p>your station is #{station_phrase}</p>"\
+        "<p>your direction is #{direction_phrase}</p>"\
+        "<say-as interpret-as='interjection'>bam</say-as>"\
+      "</speak>"
+    end
   end
 
   # def self.arrival_phrasing(minutes_out)
