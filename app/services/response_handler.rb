@@ -1,17 +1,17 @@
 class ResponseHandler
-  def self.process(processed_request)
-    intent = processed_request[:intent]
-    dialog_state = processed_request[:state]
+  def self.process(request)
+    intent = request[:intent]
+    state = request[:state]
 
-    if dialog_state == AlexaDialogStates::IN_PROGRESS
-      content = processed_request[:content]
-    elsif dialog_state == AlexaDialogStates::COMPLETED
-      content = PhraseBuilder.create(processed_request)
+    if state == AlexaDialogStates::IN_PROGRESS
+      content = request[:content]
+    elsif state == AlexaDialogStates::COMPLETED
+      content = PhraseBuilder.create(request)
     end
 
     {
       intent: intent,
-      state: dialog_state,
+      state: state,
       content: content
     }
   end
