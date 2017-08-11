@@ -10,14 +10,14 @@ module RouteNames
 
   def self.all
     [
-      RouteTypes::BLUE,
-      RouteTypes::BROWN,
-      RouteTypes::GREEN,
-      RouteTypes::ORANGE,
-      RouteTypes::PINK,
-      RouteTypes::PURPLE,
-      RouteTypes::RED,
-      RouteTypes::YELLOW
+      RouteNames::BLUE,
+      RouteNames::BROWN,
+      RouteNames::GREEN,
+      RouteNames::ORANGE,
+      RouteNames::PINK,
+      RouteNames::PURPLE,
+      RouteNames::RED,
+      RouteNames::YELLOW
     ]
   end
 end

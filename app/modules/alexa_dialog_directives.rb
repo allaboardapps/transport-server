@@ -6,10 +6,10 @@ module AlexaDialogDirectives
 
   def self.all
     [
-      AlexaDialogSteps::DELEGATE,
-      AlexaDialogSteps::ELICIT_SLOT,
-      AlexaDialogSteps::CONFIRM_SLOT,
-      AlexaDialogSteps::CONFIRM_INTENT
+      AlexaDialogDirectives::DELEGATE,
+      AlexaDialogDirectives::ELICIT_SLOT,
+      AlexaDialogDirectives::CONFIRM_SLOT,
+      AlexaDialogDirectives::CONFIRM_INTENT
     ]
   end
 end

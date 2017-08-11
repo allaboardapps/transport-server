@@ -1,11 +1,11 @@
 require "rails_helper"
 
-describe RouteNames, type: :module do
-  it "renders a route name" do
-    expect(described_class::BROWN).to eq "brown"
+describe RouteTypes, type: :module do
+  it "renders a route type" do
+    expect(described_class::BUS).to eq "bus"
   end
 
-  it "returns a list of all route names" do
-    expect(described_class.all).to include "brown", "pink", "yellow"
+  it "returns a list of all route types" do
+    expect(described_class.all).to include "bus", "train"
   end
 end
