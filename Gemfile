@@ -23,7 +23,7 @@ gem "settingslogic", "2.0.9"
 gem "uglifier", "3.2.0"
 
 group :production do
-  gem "scout_apm", "2.1.29"
+  gem "scout_apm", "2.1.30"
 end
 
 group :development, :test do
@@ -48,7 +48,7 @@ group :test do
   gem "airborne", "0.2.13"
   gem "rspec-instafail", "1.0.0", require: false
   gem "rspec-json_expectations", "2.1.0"
-  gem "rspec-rails", "3.6.0"
+  gem "rspec-rails", "3.6.1"
   gem "rspec-retry", "0.5.4"
   gem "rubocop-rspec", "1.15.1"
   gem "shoulda-matchers", "3.1.2"

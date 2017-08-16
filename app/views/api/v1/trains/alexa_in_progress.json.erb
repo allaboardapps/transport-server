@@ -2,9 +2,14 @@
   "version": "1.0",
   "sessionAttributes": {},
   "response": {
+    "outputSpeech": {
+      "type": "SSML",
+      "ssml": "<speak>From where did you want to start your trip?</speak>"
+    },
     "directives": [
       {
-        "type": "Dialog.Delegate",
+        "type": "Dialog.ElicitSlot",
+        "slotToElicit": "direction",
         "updatedIntent": {
           "name": "StationDirect",
           "confirmationStatus": "NONE",
