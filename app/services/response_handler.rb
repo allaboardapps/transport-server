@@ -72,4 +72,3 @@ class ResponseHandler
     conn
   end
 end
-
