@@ -1,96 +1,34 @@
 class RequestHandler
-  def self.process(request)
-    # CtaTrainTracker.request(40380)
+  def self.process(params)
+    slots = params[:request][:intent][:slots]
 
-    # response["ctatt"]["eta"]
-    # station_name = staNm
-    # station_desc = stpDe
-    # route = rt
-    # arrival_time = arrT
+    conn = {
+      request: {
+        version: params[:version],
+        session_id: params[:session][:sessionId],
+        application_id: params[:session][:application][:applicationId],
+        user_id: params[:session][:user][:userId],
+        request_id: params[:request][:requestId],
+        type: params[:request][:type],
+        locale: params[:request][:locale],
+        timestamp: params[:request][:timestamp],
+        intent_name: params[:request][:intent][:name],
+        slots: {
+          station_id: slots.dig(:station_id, :value),
+          station: slots.dig(:station, :value),
+          route: slots.dig(:route, :value),
+          direction: slots.dig(:direction, :value)
+        }
+      },
+      response: {
+        ssml: "",
+        slot_to_elicit: "",
+        slots: {},
+        should_end_session: false,
+        template: ""
+      }
+    }
 
-    # {
-    #   line: "brown",
-    #   direction: "north",
-    #   station: "<phoneme alphabet='ipa' ph='dɛmen'>Damen</phoneme>",
-    #   arrivals: [
-    #     {
-    #       minutes_out: 1
-    #     },
-    #     {
-    #       minutes_out: 13
-    #     },
-    #     {
-    #       minutes_out: 22
-    #     }
-    #   ]
-    # }
-    # request[:intent][:slots][Slots::DIRECTION]["value"]
-    intent = request[:intent][:name]
-
-    if intent == Intents::STATION_DIRECT
-      direction = request[:intent][:slots][Slots::DIRECTION][:value]
-      station_id = request[:intent][:slots][Slots::STATION_ID][:value]
-
-      if !Direction.valid?(name: direction)
-        {
-          intent: Intents::STATION_DIRECT,
-          state: AlexaDialogStates::IN_PROGRESS,
-          content: Slots::DIRECTION
-        }
-      elsif !Station.stopid_valid?(stopid: station_id)
-        {
-          intent: Intents::STATION_DIRECT,
-          state: AlexaDialogStates::IN_PROGRESS,
-          content: Slots::STATION_ID
-        }
-      else
-        slot_values = {
-          direction: direction,
-          station_id: station_id
-        }
-
-        {
-          intent: Intents::STATION_DIRECT,
-          state: AlexaDialogStates::COMPLETED,
-          content: slot_values
-        }
-      end
-    elsif intent == Intents::NEXT_TRAIN
-      direction = request[:intent][:slots][Slots::DIRECTION][:value]
-      route = request[:intent][:slots][Slots::ROUTE][:value]
-      station = request[:intent][:slots][Slots::STATION][:value]
-
-      if !Direction.valid?(name: direction)
-        {
-          intent: Intents::NEXT_TRAIN,
-          state: AlexaDialogStates::IN_PROGRESS,
-          content: Slots::DIRECTION
-        }
-      elsif !Route.valid?(name: route)
-        {
-          intent: Intents::NEXT_TRAIN,
-          state: AlexaDialogStates::IN_PROGRESS,
-          content: Slots::ROUTE
-        }
-      elsif !Station.name_valid?(name: station)
-        {
-          intent: Intents::NEXT_TRAIN,
-          state: AlexaDialogStates::IN_PROGRESS,
-          content: Slots::STATION
-        }
-      else
-        slot_values = {
-          direction: direction,
-          route: route,
-          station: station
-        }
-
-        {
-          intent: Intents::NEXT_TRAIN,
-          state: AlexaDialogStates::COMPLETED,
-          content: slot_values
-        }
-      end
-    end
+    conn
   end
 end

@@ -4,7 +4,7 @@
   "response": {
     "outputSpeech": {
       "type": "SSML",
-      "ssml": "<speak>From where did you want to start your trip?</speak>"
+      "ssml": "<%= raw @conn[:response][:ssml] %>"
     },
     "directives": [
       {

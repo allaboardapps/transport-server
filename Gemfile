@@ -27,7 +27,7 @@ group :production do
 end
 
 group :development, :test do
-  gem "brakeman", "3.7.0", require: false
+  gem "brakeman", "3.7.2", require: false
   gem "bundler-audit", "0.6.0", require: false
   gem "byebug", "9.0.6"
   gem "factory_girl_rails", "4.8.0"
