@@ -34,6 +34,8 @@ ActiveAdmin.register Station do
     column "System" do |station|
       station.transport_system.acronym
     end
+    column :stopid
+    column :mapid
     column :name
     column :direction
     column :route
