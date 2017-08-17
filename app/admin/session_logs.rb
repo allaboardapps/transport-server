@@ -26,7 +26,9 @@ ActiveAdmin.register SessionLog do
     column "Station Name", :slot_station_name
     column "Route", :slot_route
     column "Direction", :slot_direction
-    column :created_at
+    column :created_at do |session_log|
+      session_log.created_at.in_time_zone("America/Chicago").strftime("%Y-%m-%d %I:%M:%S %p")
+    end
     actions
   end
 

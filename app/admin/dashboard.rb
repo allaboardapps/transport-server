@@ -20,6 +20,11 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
       column do
+        panel "Sessions" do
+          ul do
+            li link_to "Session Logs", admin_session_logs_path
+          end
+        end
         panel "Tech" do
           ul do
             li link_to "Transport Server Wiki", "https://github.com/allaboardapps/transport-server/wiki", target: "_blank"
