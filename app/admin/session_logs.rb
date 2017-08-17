@@ -6,11 +6,17 @@ ActiveAdmin.register SessionLog do
   filter :id
 
   index do
-    column "Session ID" do |session_log|
+    column "Log ID" do |session_log|
       link_to session_log.id_shortened, admin_session_log_path(session_log) if session_log.id_shortened.present?
+    end
+    column "App ID" do |session_log|
+      session_log.shortened_application_id
     end
     column "User ID" do |session_log|
       session_log.shortened_user_id
+    end
+    column "Session ID" do |session_log|
+      session_log.shortened_session_id
     end
     column "Request ID" do |session_log|
       session_log.shortened_request_id
@@ -28,16 +34,22 @@ ActiveAdmin.register SessionLog do
     attributes_table do
       row :id_shortened
       row :id
+      row :application_id
+      row :user_id
+      row :session_id
+      row :request_id
       row :version
       row :intent_name
       row :session_new
-      row :session_id
-      row :application_id
-      row :user_id
+      row "App ID" do
+        session_log.shortened_application_id
+      end
       row "User ID" do
         session_log.shortened_user_id
       end
-      row :request_id
+      row "Session ID" do
+        session_log.shortened_session_id
+      end
       row "Request ID" do
         session_log.shortened_request_id
       end
