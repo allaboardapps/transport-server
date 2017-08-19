@@ -25,7 +25,7 @@ class Direction < ApplicationRecord
   def self.validate_by_name(name:)
     return { name: Slots::DIRECTION, present: false, valid: false, value: nil } if name.blank?
     return { name: Slots::DIRECTION, present: true, valid: true, value: name } if ci_search(name: name).present?
-    return { name: Slots::DIRECTION, present: true, valid: false, value: name }
+    { name: Slots::DIRECTION, present: true, valid: false, value: name }
   end
 
   def self.ci_search(name:)
@@ -42,6 +42,8 @@ class Direction < ApplicationRecord
       else
         "<speak>There is something wrong with the direction processing</speak>"
       end
+    else
+      "<speak>There is something wrong with the direction processing</speak>"
     end
   end
 end
