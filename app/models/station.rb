@@ -28,8 +28,26 @@ class Station < ApplicationRecord
     false
   end
 
+  def self.validate_by_stopid(stopid:)
+    return { name: Slots::STATION_ID, present: false, valid: false, value: nil } if stopid.blank?
+    return { name: Slots::STATION_ID, present: true, valid: true, value: stopid } if find_by(stopid: stopid).present?
+    return { name: Slots::STATION_ID, present: true, valid: false, value: stopid }
+  end
+
   def self.ci_search(name:)
     return nil if name.blank?
     find_by("LOWER(name) ILIKE ?", name.downcase)
+  end
+
+  def self.render_ssml(slot:)
+    if slot[:name] == Slots::STATION_ID
+      if !slot[:present]
+        "<speak>Which station i.d.?</speak>"
+      elsif slot[:present] && !slot[:valid]
+        "<speak>I don't know that station i.d. station numbers are five digits long and start with the number 3</speak>"
+      else
+        "<speak>There is something wrong with the station id processing</speak>"
+      end
+    end
   end
 end

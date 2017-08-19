@@ -2,28 +2,41 @@ class ResponseHandler
   def self.process(conn)
     intent = conn[:request][:intent_name]
 
+    # station_id = { present: true, valid: true, value: 30126 }
+    # station_id = { present: true, valid: false, value: 301 }
+    # station_id = { present: false, valid: false, value: nil }
+
+    # if station is blank
+    #   Which station id?
+
+    # if station is present, but invalid
+    #   I don't know that station ID. Station numbers are five digits long and start with the number 3
+
+    # if direction is blank
+    #   What direction?
+
+    # if direction is present, but invalid
+    #   I don't know that direction. You can say North, South, East, or West
+
     if intent == Intents::STATION_DIRECT
-      station_id = conn[:request][:slots][:station_id]
-      direction = conn[:request][:slots][:direction]
+      station_id_slot = conn[:request][:slots][:station_id]
+      direction_slot = conn[:request][:slots][:direction]
+      station_id = Station.validate_by_stopid(stopid: station_id_slot)
+      direction = Direction.validate_by_name(name: direction_slot)
 
-      if Station.stopid_valid?(stopid: station_id)
-        conn[:response][:slots][:station_id] = station_id
-      end
+      conn[:response][:slots][:station_id] = station_id[:value]
+      conn[:response][:slots][:direction] = direction[:value]
 
-      if Direction.valid?(name: direction)
-        conn[:response][:slots][:direction] = direction
-      end
-
-      if conn[:response][:slots][:station_id].blank?
-        conn[:response][:ssml] = "<speak>Which station i.d.?</speak>"
+      if !station_id[:valid]
+        conn[:response][:ssml] = Station.render_ssml(slot: station_id)
         conn[:response][:slot_to_elicit] = Slots::STATION_ID
         conn[:response][:template] = "dialog"
-      elsif conn[:response][:slots][:direction].blank?
-        conn[:response][:ssml] = "<speak>Which direction?</speak>"
+      elsif !direction[:valid]
+        conn[:response][:ssml] = Direction.render_ssml(slot: direction)
         conn[:response][:slot_to_elicit] = Slots::DIRECTION
         conn[:response][:template] = "dialog"
       else
-        conn[:response][:ssml] = "<speak>We're all good</speak>"
+        conn[:response][:ssml] = "<speak>Your station i.d. is #{station_id[:value]} and your direction is #{direction[:value]} </speak>"
         conn[:response][:template] = "completed"
         conn[:response][:should_end_session] = true
       end

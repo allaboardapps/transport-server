@@ -22,8 +22,26 @@ class Direction < ApplicationRecord
     false
   end
 
+  def self.validate_by_name(name:)
+    return { name: Slots::DIRECTION, present: false, valid: false, value: nil } if name.blank?
+    return { name: Slots::DIRECTION, present: true, valid: true, value: name } if ci_search(name: name).present?
+    return { name: Slots::DIRECTION, present: true, valid: false, value: name }
+  end
+
   def self.ci_search(name:)
     return nil if name.blank?
     find_by("LOWER(name) ILIKE ?", name.downcase)
+  end
+
+  def self.render_ssml(slot:)
+    if slot[:name] == Slots::DIRECTION
+      if !slot[:present]
+        "<speak>Which direction?</speak>"
+      elsif slot[:present] && !slot[:valid]
+        "<speak>I don't know that direction name. You can say North, South, East, or West</speak>"
+      else
+        "<speak>There is something wrong with the direction processing</speak>"
+      end
+    end
   end
 end
