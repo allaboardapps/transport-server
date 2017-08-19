@@ -25,6 +25,7 @@ class ResponseHandler
       else
         conn[:response][:ssml] = "<speak>We're all good</speak>"
         conn[:response][:template] = "completed"
+        conn[:response][:should_end_session] = true
       end
     elsif intent == Intents::NEXT_TRAIN
       # direction = params[:intent][:slots][Slots::DIRECTION]
