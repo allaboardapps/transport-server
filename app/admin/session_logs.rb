@@ -6,9 +6,6 @@ ActiveAdmin.register SessionLog do
   filter :id
 
   index do
-    column "Log ID" do |session_log|
-      link_to session_log.id_shortened, admin_session_log_path(session_log) if session_log.id_shortened.present?
-    end
     column "App ID" do |session_log|
       session_log.shortened_application_id
     end
@@ -22,6 +19,7 @@ ActiveAdmin.register SessionLog do
       session_log.shortened_request_id
     end
     column :intent_name
+    column :session_new
     column "Station ID", :slot_station_id
     column "Station Name", :slot_station_name
     column "Route", :slot_route
