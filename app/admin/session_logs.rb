@@ -1,7 +1,7 @@
 ActiveAdmin.register SessionLog do
   menu parent: "Logs", priority: 100
 
-  config.sort_order = "created_at desc"
+  config.sort_order = "created_at_desc"
 
   filter :id
 
