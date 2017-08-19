@@ -36,7 +36,7 @@ class ResponseHandler
         conn[:response][:slot_to_elicit] = Slots::DIRECTION
         conn[:response][:template] = "dialog"
       else
-        conn[:response][:ssml] = "<speak>Your station i.d. is #{station_id[:value]} and your direction is #{direction[:value]} </speak>"
+        conn[:response][:ssml] = "<speak>Your station i.d. is <say-as interpret-as='cardinal'>#{station_id[:value]}</say-as> and your direction is #{direction[:value]}</speak>"
         conn[:response][:template] = "completed"
         conn[:response][:should_end_session] = true
       end

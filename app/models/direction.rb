@@ -38,7 +38,7 @@ class Direction < ApplicationRecord
       if !slot[:present]
         "<speak>Which direction?</speak>"
       elsif slot[:present] && !slot[:valid]
-        "<speak>I don't know that direction name. You can say North, South, East, or West</speak>"
+        "<speak>Sorry, I don't know that direction.<break time='1s'/>You can say North, South, East, or West</speak>"
       else
         "<speak>There is something wrong with the direction processing</speak>"
       end

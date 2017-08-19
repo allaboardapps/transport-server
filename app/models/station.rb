@@ -44,7 +44,7 @@ class Station < ApplicationRecord
       if !slot[:present]
         "<speak>Which station i.d.?</speak>"
       elsif slot[:present] && !slot[:valid]
-        "<speak>I don't know that station i.d. station numbers are five digits long and start with the number 3</speak>"
+        "<speak>I don't know that station i.d.<break time='2s'/>Station numbers are five digits long and start with the number 3.<break time='1s'/>Please say a valid station i.d.</speak>"
       else
         "<speak>There is something wrong with the station id processing</speak>"
       end
