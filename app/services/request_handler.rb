@@ -45,7 +45,7 @@ class RequestHandler
       slot_route: conn[:request][:slots][:route],
       ssml: "",
       slot_to_elicit: "",
-      should_end_session: nil,
+      should_end_session: false,
       template: "",
       conn_request_body: conn.to_json,
       request_body: params.to_json,

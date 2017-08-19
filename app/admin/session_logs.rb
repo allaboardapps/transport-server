@@ -19,7 +19,9 @@ ActiveAdmin.register SessionLog do
       session_log.shortened_request_id
     end
     column :intent_name
-    column :session_new
+    column :state do |session_log|
+      "<span class='session-state #{session_log.session_state}'>#{session_log.session_state}</span>".html_safe
+    end
     column "Station ID", :slot_station_id
     column "Station Name", :slot_station_name
     column "Route", :slot_route
@@ -36,11 +38,14 @@ ActiveAdmin.register SessionLog do
       row :id
       row :application_id
       row :user_id
-      row :session_id
       row :request_id
       row :version
       row :intent_name
+      row :should_end_session
       row :session_new
+      row :state do
+        session_log.session_state
+      end
       row "App ID" do
         session_log.shortened_application_id
       end
@@ -60,7 +65,6 @@ ActiveAdmin.register SessionLog do
       row :ssml
       row :slot_to_elicit
       row :template
-      row :should_end_session
       row :request_body do
         "<pre>#{JSON.pretty_generate(JSON.parse(session_log.request_body))}</pre>".html_safe if session_log.request_body.present?
       end

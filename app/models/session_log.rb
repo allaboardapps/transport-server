@@ -18,4 +18,16 @@ class SessionLog < ApplicationRecord
   def shortened_request_id
     request_id.split(".")[3].slice(0..10) if request_id.present?
   end
+
+  def session_state
+    if session_new
+      "started"
+    elsif !session_new && !should_end_session
+      "dialog"
+    elsif should_end_session
+      "completed"
+    else
+      "unknown"
+    end
+  end
 end

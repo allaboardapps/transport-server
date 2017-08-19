@@ -98,3 +98,28 @@ pre {
   max-height: 340px;
   overflow-y: scroll;
 }
+
+.session-state {
+  padding: 3px;
+  text-transform: capitalize;
+
+  &.started {
+    background-color: green;
+    color: white;
+  }
+
+  &.dialog {
+    background-color: orange;
+    color: black;
+  }
+
+  &.completed {
+    background-color: blue;
+    color: white;
+  }
+
+  &.unknown {
+    background-color: black;
+    color: white;
+  }
+}
