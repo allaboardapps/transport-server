@@ -4,7 +4,7 @@ class CompletedPhraseBuilder
 
     if intent == Intents::STATION_DIRECT
       station_id = conn[:request][:slots][:station_id]
-      direction = conn[:request][:slots][:direction]
+      # direction = conn[:request][:slots][:direction]
 
       map_id = Station.find_by(stopid: station_id).mapid
       cta_response_body = CtaTrainTracker.request(mapid: map_id)
@@ -16,7 +16,7 @@ class CompletedPhraseBuilder
 
       arrivals = cta_response_body["ctatt"]["eta"].select { |arrival| arrival["stpId"] == station_id.to_s }
 
-      if arrivals.count == 0
+      if arrivals.count.zero?
         "<speak>There are currently no trains scheduled train arrivals within the next 30 minutes</speak>"
       else
         ssml = arrivals.map.with_index do |arrival, index|
@@ -31,6 +31,7 @@ class CompletedPhraseBuilder
       #   "<p>your map i.d. is <say-as interpret-as='digits'>#{mapid_phrase}</say-as></p>"\
       #   "<p><say-as interpret-as='interjection'>vroom</say-as></p>"\
       # "</speak>"
+      ssml
     elsif intent == Intents::NEXT_TRAIN
       direction_phrase = request[:content][:direction]
       route_phrase = request[:content][:route]
@@ -46,8 +47,8 @@ class CompletedPhraseBuilder
   end
 
   def self.arrival_phrasing(arrival)
-    start_time = Time.current
-    end_time = Time.parse(arrival["arrT"])
+    start_time = Time.current.utc
+    end_time = Time.parse(arrival["arrT"]).utc
     duration_in_minutes = TimeDifference.between(start_time, end_time).in_minutes
 
     if duration_in_minutes <= 1
@@ -70,10 +71,4 @@ class CompletedPhraseBuilder
   # direction_phrase = "#{response[:direction]}bound"
   # line_phrase = "#{response[:line]} line train"
   # station_phrase = "#{response[:station]} station"
-
-  ssml = response[:arrivals].map.with_index do |arrival, index|
-    intro_phrase = intro_phrasing(index)
-    arrival_phrase = arrival_phrasing(arrival[:minutes_out])
-    "<p>#{intro_phrase} #{direction_phrase} #{line_phrase} should arrive at the #{station_phrase} in #{arrival_phrase}.</p>"
-  end.join(". ")
 end
