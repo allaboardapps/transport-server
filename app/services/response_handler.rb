@@ -31,12 +31,15 @@ class ResponseHandler
         conn[:response][:ssml] = Station.render_ssml(slot: station_id)
         conn[:response][:slot_to_elicit] = Slots::STATION_ID
         conn[:response][:template] = "dialog"
+        conn[:response][:should_end_session] = false
       elsif !direction[:valid]
         conn[:response][:ssml] = Direction.render_ssml(slot: direction)
         conn[:response][:slot_to_elicit] = Slots::DIRECTION
         conn[:response][:template] = "dialog"
+        conn[:response][:should_end_session] = false
       else
-        conn[:response][:ssml] = "<speak>Your station i.d. is <say-as interpret-as='digits'>#{station_id[:value]}</say-as> and your direction is #{direction[:value]}<break time='1s'/><say-as interpret-as='interjection'>choo choo</say-as></speak>"
+        ssml = CompletedPhraseBuilder.render_ssml(conn)
+        conn[:response][:ssml] = ssml
         conn[:response][:template] = "completed"
         conn[:response][:should_end_session] = true
       end

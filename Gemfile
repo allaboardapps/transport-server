@@ -20,6 +20,7 @@ gem "rollbar", "2.15.0"
 gem "sass-rails", "5.0.6"
 gem "scenic", "1.4.0"
 gem "settingslogic", "2.0.9"
+gem "time_difference", "0.5.0"
 gem "uglifier", "3.2.0"
 
 group :production do

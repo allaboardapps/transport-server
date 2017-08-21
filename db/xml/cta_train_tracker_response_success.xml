@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ctatt>
+    <tmst>20170820 17:33:30</tmst>
+    <errCd>0</errCd>
+    <errNm />
+    <eta>
+        <staId>40090</staId>
+        <stpId>30019</stpId>
+        <staNm>Damen</staNm>
+        <stpDe>Service toward Loop</stpDe>
+        <rn>420</rn>
+        <rt>Brn</rt>
+        <destSt>30249</destSt>
+        <destNm>Loop</destNm>
+        <trDr>5</trDr>
+        <prdt>20170820 17:33:15</prdt>
+        <arrT>20170820 17:35:15</arrT>
+        <isApp>0</isApp>
+        <isSch>0</isSch>
+        <isDly>0</isDly>
+        <isFlt>0</isFlt>
+        <flags />
+        <lat>41.96615</lat>
+        <lon>-87.69996</lon>
+        <heading>89</heading>
+    </eta>
+    <eta>
+        <staId>40090</staId>
+        <stpId>30018</stpId>
+        <staNm>Damen</staNm>
+        <stpDe>Service toward Kimball</stpDe>
+        <rn>414</rn>
+        <rt>Brn</rt>
+        <destSt>30249</destSt>
+        <destNm>Kimball</destNm>
+        <trDr>1</trDr>
+        <prdt>20170820 17:32:42</prdt>
+        <arrT>20170820 17:39:42</arrT>
+        <isApp>0</isApp>
+        <isSch>0</isSch>
+        <isDly>0</isDly>
+        <isFlt>0</isFlt>
+        <flags />
+        <lat>41.94381</lat>
+        <lon>-87.66362</lon>
+        <heading>269</heading>
+    </eta>
+    <eta>
+        <staId>40090</staId>
+        <stpId>30019</stpId>
+        <staNm>Damen</staNm>
+        <stpDe>Service toward Loop</stpDe>
+        <rn>416</rn>
+        <rt>Brn</rt>
+        <destSt>0</destSt>
+        <destNm>Loop</destNm>
+        <trDr>5</trDr>
+        <prdt>20170820 17:33:21</prdt>
+        <arrT>20170820 17:47:21</arrT>
+        <isApp>0</isApp>
+        <isSch>1</isSch>
+        <isDly>0</isDly>
+        <isFlt>0</isFlt>
+        <flags />
+        <lat />
+        <lon />
+        <heading />
+    </eta>
+    <eta>
+        <staId>40090</staId>
+        <stpId>30018</stpId>
+        <staNm>Damen</staNm>
+        <stpDe>Service toward Kimball</stpDe>
+        <rn>412</rn>
+        <rt>Brn</rt>
+        <destSt>30249</destSt>
+        <destNm>Kimball</destNm>
+        <trDr>1</trDr>
+        <prdt>20170820 17:33:04</prdt>
+        <arrT>20170820 17:50:04</arrT>
+        <isApp>0</isApp>
+        <isSch>0</isSch>
+        <isDly>0</isDly>
+        <isFlt>0</isFlt>
+        <flags />
+        <lat>41.91372</lat>
+        <lon>-87.6524</lon>
+        <heading>332</heading>
+    </eta>
+</ctatt>
