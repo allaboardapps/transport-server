@@ -16,7 +16,7 @@ gem "pg", "0.21.0"
 gem "postmark-rails", "0.15.0"
 gem "puma", "3.10.0"
 gem "rest-client", "2.0.2"
-gem "rollbar", "2.15.0"
+gem "rollbar", "2.15.1"
 gem "sass-rails", "5.0.6"
 gem "scenic", "1.4.0"
 gem "settingslogic", "2.0.9"
@@ -30,7 +30,7 @@ end
 group :development, :test do
   gem "brakeman", "3.7.2", require: false
   gem "bundler-audit", "0.6.0", require: false
-  gem "byebug", "9.0.6"
+  gem "byebug", "9.1.0"
   gem "factory_girl_rails", "4.8.0"
   gem "hakiri", "0.7.2", require: false
   gem "pry-rails", "0.3.6"
@@ -50,7 +50,7 @@ group :test do
   gem "rspec-instafail", "1.0.0", require: false
   gem "rspec-json_expectations", "2.1.0"
   gem "rspec-rails", "3.6.1"
-  gem "rspec-retry", "0.5.4"
+  gem "rspec-retry", "0.5.5"
   gem "rubocop-rspec", "1.15.1"
   gem "shoulda-matchers", "3.1.2"
 end
