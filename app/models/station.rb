@@ -7,7 +7,7 @@ class Station < ApplicationRecord
 
   belongs_to :direction
   belongs_to :route
-  belongs_to :transport_system
+  belongs_to :agency
 
   scope :actives, -> { where(fake: false) }
   scope :fakes, -> { where(fake: true) }

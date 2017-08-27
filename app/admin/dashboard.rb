@@ -7,7 +7,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Transport" do
           ul do
-            li link_to "Transport Systems", admin_transport_systems_path
+            li link_to "Agencies", admin_transport_systems_path
             li link_to "Routes", admin_routes_path
             li link_to "Stations", admin_stations_path
             li link_to "Directions", admin_directions_path

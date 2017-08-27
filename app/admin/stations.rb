@@ -5,7 +5,7 @@ ActiveAdmin.register Station do
 
   controller do
     def scoped_collection
-      super.includes(:transport_system)
+      super.includes(:agency)
     end
   end
 
@@ -16,7 +16,7 @@ ActiveAdmin.register Station do
 
   filter :id_shortened_eq, label: "Short ID"
   filter :id_eq, label: "UUID"
-  filter :transport_system, as: :select
+  filter :agency, as: :select
   filter :direction, as: :select
   filter :route, as: :select
   filter :name
@@ -32,7 +32,7 @@ ActiveAdmin.register Station do
       link_to station.id_shortened, admin_station_path(station) if station.id_shortened.present?
     end
     column "System" do |station|
-      station.transport_system.acronym
+      station.agency.acronym
     end
     column :stopid
     column :mapid
@@ -47,7 +47,7 @@ ActiveAdmin.register Station do
 
   form do |f|
     f.inputs do
-      f.input :transport_system, as: :select
+      f.input :agency, as: :select
       f.input :direction, as: :select
       f.input :route, as: :select
       f.input :name
@@ -70,7 +70,7 @@ ActiveAdmin.register Station do
       row :id
       row :mapid
       row :stopid
-      row :transport_system
+      row :agency
       row :name
       row :stop_name
       row :description

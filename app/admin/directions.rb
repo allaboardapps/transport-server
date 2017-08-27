@@ -10,7 +10,7 @@ ActiveAdmin.register Direction do
 
   filter :id_shortened_eq, label: "Short ID"
   filter :id_eq, label: "UUID"
-  filter :transport_system, as: :select
+  filter :agency, as: :select
   filter :name
   filter :system_identifier
   filter :fake
@@ -20,7 +20,7 @@ ActiveAdmin.register Direction do
       link_to direction.id_shortened, admin_direction_path(direction) if direction.id_shortened.present?
     end
     column "System" do |station|
-      station.transport_system.acronym
+      station.agency.acronym
     end
     column :name
     column "SYS ID", :system_identifier
@@ -32,7 +32,7 @@ ActiveAdmin.register Direction do
 
   form do |f|
     f.inputs do
-      f.input :transport_system, as: :select
+      f.input :agency, as: :select
       f.input :name
       f.input :system_identifier
       f.input :diction, as: :text
@@ -45,7 +45,7 @@ ActiveAdmin.register Direction do
     attributes_table do
       row :id_shortened
       row :id
-      row :transport_system
+      row :agency
       row :direction
       row :name
       row :system_identifier

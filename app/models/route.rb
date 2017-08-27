@@ -5,7 +5,7 @@ class Route < ApplicationRecord
     update(id_shortened: id.slice(0..7))
   end
 
-  belongs_to :transport_system
+  belongs_to :agency
   has_many :stations
 
   scope :actives, -> { where(fake: false) }
@@ -24,6 +24,6 @@ class Route < ApplicationRecord
 
   def self.ci_search(name:)
     return nil if name.blank?
-    find_by("LOWER(lowerid) ILIKE ?", name.downcase)
+    find_by("LOWER(external_id) ILIKE ?", name.downcase)
   end
 end

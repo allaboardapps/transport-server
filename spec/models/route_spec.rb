@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Route, type: :model do
-  it { is_expected.to belong_to :transport_system }
+  it { is_expected.to belong_to :agency }
   it { is_expected.to have_many :stations }
 
   describe "validations" do
@@ -16,65 +16,65 @@ describe Route, type: :model do
 
   describe ".valid?" do
     it "returns false if the route is blank" do
-      FactoryGirl.create :route, name: "Purple", lowerid: "purple"
+      FactoryGirl.create :route, name: "Purple Line", short_name: "purple"
       test_subject = nil
-      expect(described_class.valid?(name: test_subject)).to be_falsey
+      expect(described_class.valid?(short_name: test_subject)).to be_falsey
     end
 
     it "returns false if the route is empty" do
-      FactoryGirl.create :route, name: "Brown", lowerid: "brown"
+      FactoryGirl.create :route, name: "Brown Line", short_name: "brown"
       test_subject = ""
-      expect(described_class.valid?(name: test_subject)).to be_falsey
+      expect(described_class.valid?(short_name: test_subject)).to be_falsey
     end
 
     it "returns true if the route name matches an available route" do
-      FactoryGirl.create :route, name: "Red", lowerid: "red"
+      FactoryGirl.create :route, name: "Red Line", short_name: "red"
       test_subject = "red"
-      expect(described_class.valid?(name: test_subject)).to be_truthy
+      expect(described_class.valid?(short_name: test_subject)).to be_truthy
     end
 
     it "returns true, regardless of case" do
-      FactoryGirl.create :route, name: "Blue", lowerid: "blue"
+      FactoryGirl.create :route, name: "Blue Line", short_name: "blue"
       test_subject = "bLuE"
-      expect(described_class.valid?(name: test_subject)).to be_truthy
+      expect(described_class.valid?(short_name: test_subject)).to be_truthy
     end
 
     it "returns false if the name does not match an available submission" do
-      FactoryGirl.create :route, name: "Green", lowerid: "green"
+      FactoryGirl.create :route, name: "Green Line", short_name: "green"
       test_subject = "geez"
-      expect(described_class.valid?(name: test_subject)).to be_falsey
+      expect(described_class.valid?(short_name: test_subject)).to be_falsey
     end
   end
 
   describe ".ci_search" do
     it "returns no results if the name is blank" do
-      FactoryGirl.create :route, name: "Purple", lowerid: "purple"
+      FactoryGirl.create :route, name: "Purple Line", short_name: "purple"
       test_subject = nil
-      expect(described_class.ci_search(name: test_subject)).to be_nil
+      expect(described_class.ci_search(short_name: test_subject)).to be_nil
     end
 
     it "returns no results if the name is empty" do
-      FactoryGirl.create :route, name: "Yellow", lowerid: "yellow"
+      FactoryGirl.create :route, name: "Yellow Line", short_name: "yellow"
       test_subject = ""
-      expect(described_class.ci_search(name: test_subject)).to be_nil
+      expect(described_class.ci_search(short_name: test_subject)).to be_nil
     end
 
     it "returns true if the route name matches an available route" do
-      FactoryGirl.create :route, name: "Brown", lowerid: "brown"
+      FactoryGirl.create :route, name: "Brown Line", short_name: "brown"
       test_subject = "brown"
-      expect(described_class.ci_search(name: test_subject)).not_to be_nil
+      expect(described_class.ci_search(short_name: test_subject)).not_to be_nil
     end
 
     it "returns true if the route name matches an available route, regardless of case" do
-      FactoryGirl.create :route, name: "Red", lowerid: "red"
+      FactoryGirl.create :route, name: "Red Line", short_name: "red"
       test_subject = "reD"
-      expect(described_class.ci_search(name: test_subject)).not_to be_nil
+      expect(described_class.ci_search(short_name: test_subject)).not_to be_nil
     end
 
     it "returns false if the route name does not match an available route" do
-      FactoryGirl.create :route, name: "Yellow", lowerid: "yellow"
+      FactoryGirl.create :route, name: "Yellow Line", short_name: "yellow"
       test_subject = "Yow"
-      expect(described_class.ci_search(name: test_subject)).to be_nil
+      expect(described_class.ci_search(short_name: test_subject)).to be_nil
     end
   end
 end

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Station, type: :model do
-  it { is_expected.to belong_to :transport_system }
+  it { is_expected.to belong_to :agency }
   it { is_expected.to belong_to :direction }
   it { is_expected.to belong_to :route }
 

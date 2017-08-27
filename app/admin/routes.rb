@@ -1,11 +1,22 @@
 ActiveAdmin.register Route do
   menu parent: "Systems", priority: 300
 
-  permit_params :name, :route_type, :diction, :fake
+  permit_params(
+    :agency_id,
+    :external_id,
+    :name,
+    :short_name,
+    :description,
+    :route_type,
+    :route_url,
+    :color_hex,
+    :diction,
+    :fake
+  )
 
   controller do
     def scoped_collection
-      super.includes(:transport_system)
+      super.includes(:agency)
     end
   end
 
@@ -16,10 +27,11 @@ ActiveAdmin.register Route do
 
   filter :id_shortened_eq, label: "Short ID"
   filter :id_eq, label: "UUID"
-  filter :transport_system, as: :select
+  filter :agency, as: :select
   filter :name
+  filter :short_name
   filter :system_identifier
-  filter :lowerid
+  filter :external_id
   filter :description
   filter :route_type
   filter :fake
@@ -29,10 +41,10 @@ ActiveAdmin.register Route do
       link_to route.id_shortened, admin_route_path(route) if route.id_shortened.present?
     end
     column "System" do |route|
-      route.transport_system.acronym
+      route.agency.acronym
     end
     column :name
-    column "SYS ID", :system_identifier
+    column :short_name
     column :route_type
     column :diction
     column :updated_at
@@ -42,12 +54,14 @@ ActiveAdmin.register Route do
 
   form do |f|
     f.inputs do
-      f.input :transport_system, as: :select
+      f.input :agency, as: :select
+      f.input :external_id
       f.input :name
-      f.input :system_identifier
-      f.input :lowerid
+      f.input :short_name
       f.input :description
       f.input :route_type
+      f.input :route_url
+      f.input :color_hex
       f.input :diction, as: :text
       f.input :fake
     end
@@ -58,12 +72,14 @@ ActiveAdmin.register Route do
     attributes_table do
       row :id_shortened
       row :id
-      row :transport_system
+      row :agency
+      row :external_id
       row :name
-      row :system_identifier
-      row :lowerid
+      row :short_name
       row :description
       row :route_type
+      row :route_url
+      row :color_hex
       row :diction
       row :fake
       row :updated_at
@@ -71,3 +87,4 @@ ActiveAdmin.register Route do
     end
   end
 end
+

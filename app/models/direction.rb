@@ -5,7 +5,7 @@ class Direction < ApplicationRecord
     update(id_shortened: id.slice(0..7))
   end
 
-  belongs_to :transport_system
+  belongs_to :agency
   has_many :stations
 
   scope :actives, -> { where(fake: false) }
