@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :agency do
     external_id Faker::Company.ein
     name Faker::Company.name

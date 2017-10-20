@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :station do
     name "18th (54th/Cermak-bound)"
     mapid 4000

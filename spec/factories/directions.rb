@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :direction do
     name "North"
     system_identifier "N"

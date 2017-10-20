@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :route do
     external_id Faker::Lorem.characters(3).upcase
     name "#{Faker::Color.color_name.capitalize} Line"

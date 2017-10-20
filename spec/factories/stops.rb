@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :stop do
     external_id "1234"
     name "18th (54th/Cermak-bound)"
