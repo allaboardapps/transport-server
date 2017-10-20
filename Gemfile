@@ -31,7 +31,7 @@ group :development, :test do
   gem "brakeman", "4.0.1", require: false
   gem "bundler-audit", "0.6.0", require: false
   gem "byebug", "9.1.0"
-  gem "factory_girl_rails", "4.8.0"
+  gem "factory_bot_rails", "4.8.0"
   gem "hakiri", "0.7.2", require: false
   gem "pry-rails", "0.3.6"
   gem "rails_db", "1.6.0"
