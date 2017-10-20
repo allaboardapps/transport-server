@@ -60,13 +60,13 @@ file_path = Rails.root.join("db", "imports", "cta_stations.csv")
 csv_text = open(file_path)
 csv = CSV.parse(csv_text, headers: true)
 csv.each do |row|
-  route = Route.find_by(lowerid: row["ROUTE_COLOR"])
+  route = Route.find_by(external_id: row["stop_id"])
 
   Station.create_with(
     agency: agency,
     name: row["stop_name"],
     external_id: row["stop_id"],
-    stop_name: row["STOP_NAME"],
+    stop_name: row["stop_name"],
     route: route,
     description: row["stop_name"],
     latitude: row["stop_lat"],

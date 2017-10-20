@@ -17,11 +17,28 @@ ActiveRecord::Schema.define(version: 20170820225307) do
   enable_extension "uuid-ossp"
   enable_extension "pgcrypto"
 
+  create_table "agencies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "id_shortened"
+    t.string "external_id"
+    t.string "name"
+    t.string "acronym"
+    t.string "url"
+    t.string "timezone"
+    t.string "lang"
+    t.string "phone"
+    t.string "fare_url"
+    t.string "email"
+    t.jsonb "diction"
+    t.boolean "fake", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "directions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "id_shortened"
-    t.uuid "transport_system_id"
+    t.uuid "agency_id"
     t.string "name"
-    t.string "system_identifier"
+    t.string "external_id"
     t.jsonb "diction"
     t.boolean "fake", default: false
     t.datetime "created_at", null: false
@@ -30,12 +47,14 @@ ActiveRecord::Schema.define(version: 20170820225307) do
 
   create_table "routes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "id_shortened"
-    t.uuid "transport_system_id"
+    t.string "external_id"
+    t.uuid "agency_id"
     t.string "name"
-    t.string "system_identifier"
-    t.string "lowerid"
+    t.string "short_name"
     t.string "description"
     t.string "route_type"
+    t.string "route_url"
+    t.string "color_hex"
     t.jsonb "diction"
     t.boolean "fake", default: false
     t.datetime "created_at", null: false
@@ -70,7 +89,8 @@ ActiveRecord::Schema.define(version: 20170820225307) do
 
   create_table "stations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "id_shortened"
-    t.uuid "transport_system_id"
+    t.string "external_id"
+    t.uuid "agency_id"
     t.uuid "direction_id"
     t.uuid "route_id"
     t.string "name"
@@ -87,10 +107,19 @@ ActiveRecord::Schema.define(version: 20170820225307) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "transport_systems", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "stops", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "id_shortened"
+    t.string "external_id"
+    t.uuid "agency_id"
+    t.uuid "station_id"
+    t.uuid "route_id"
     t.string "name"
-    t.string "acronym"
+    t.string "description"
+    t.string "latitude"
+    t.string "longitude"
+    t.string "station_type"
+    t.boolean "wheelchair_boarding"
+    t.string "directions", default: [], array: true
     t.jsonb "diction"
     t.boolean "fake", default: false
     t.datetime "created_at", null: false
@@ -100,21 +129,27 @@ ActiveRecord::Schema.define(version: 20170820225307) do
 
   create_view "cta_train_locations", materialized: true,  sql_definition: <<-SQL
       SELECT row_number() OVER () AS id,
-      stations.mapid,
-      stations.stopid,
+      stops.name AS stop_name,
       stations.name AS station_name,
-      routes.lowerid AS route_name,
+      routes.name AS route_name,
       directions.name AS direction_name,
+      stops.external_id AS stop_external_id,
+      stations.external_id AS station_external_id,
+      routes.external_id AS route_external_id,
+      directions.external_id AS direction_external_id,
+      stops.id AS stop_id,
       stations.id AS station_id,
       routes.id AS route_id,
       directions.id AS direction_id,
       stations.diction AS station_diction,
+      stops.diction AS stop_diction,
       routes.diction AS route_diction,
       directions.diction AS direction_diction
-     FROM ((stations
+     FROM (((stops
+       LEFT JOIN stations ON ((stations.id = stops.station_id)))
        JOIN directions ON ((directions.id = stations.direction_id)))
        JOIN routes ON ((routes.id = stations.route_id)))
-    WHERE ((stations.fake = false) AND (routes.fake = false) AND (directions.fake = false));
+    WHERE ((stops.fake = false) AND (stations.fake = false) AND (routes.fake = false) AND (directions.fake = false));
   SQL
 
 end

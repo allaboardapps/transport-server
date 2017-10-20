@@ -1,25 +1,32 @@
 SELECT
   row_number() OVER () AS id,
-  stations.mapid AS mapid,
-  stations.stopid AS stopid,
+  stops.name AS stop_name,
   stations.name AS station_name,
-  routes.lowerid AS route_name,
+  routes.name AS route_name,
   directions.name AS direction_name,
+  stops.external_id AS stop_external_id,
+  stations.external_id AS station_external_id,
+  routes.external_id AS route_external_id,
+  directions.external_id AS direction_external_id,
+  stops.id AS stop_id,
   stations.id AS station_id,
   routes.id AS route_id,
   directions.id AS direction_id,
-  stations.diction AS station_diction,
+  stations.diction As station_diction,
+  stops.diction AS stop_diction,
   routes.diction AS route_diction,
   directions.diction AS direction_diction
 FROM
-  stations
-INNER JOIN
-  directions
+ stops
+LEFT JOIN stations
+  ON stations.id = stops.station_id
+INNER JOIN directions
   ON directions.id = stations.direction_id
-INNER JOIN
-  routes
+INNER JOIN routes
   ON routes.id = stations.route_id
 WHERE
-  stations.fake = false
+  stops.fake = false
+  AND stations.fake = false
   AND routes.fake = false
   AND directions.fake = false;
+

@@ -10,14 +10,14 @@
 
 ### Staging
 
-* ruby 2.4.1
-* rails 5.1.2
+* ruby 2.4.2
+* rails 5.1.4
 * postgres 9.6.2
 
 ### Production
 
-* ruby 2.4.1
-* rails 5.1.2
+* ruby 2.4.2
+* rails 5.1.4
 * postgres 9.6.2
 
 ## Installation

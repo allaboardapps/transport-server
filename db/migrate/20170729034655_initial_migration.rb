@@ -21,8 +21,8 @@ class InitialMigration < ActiveRecord::Migration[5.1]
 
     create_table "routes", id: :uuid do |t|
       t.string   "id_shortened"
-      t.uuid     "agency_id"
       t.string   "external_id"
+      t.uuid     "agency_id"
       t.string   "name"
       t.string   "short_name"
       t.string   "description"
@@ -36,8 +36,8 @@ class InitialMigration < ActiveRecord::Migration[5.1]
 
     create_table "stops", id: :uuid do |t|
       t.string   "id_shortened"
-      t.uuid     "agency_id"
       t.string   "external_id" #stopid
+      t.uuid     "agency_id"
       t.uuid     "station_id" #mapid/parent_station
       t.uuid     "route_id"
       t.string   "name" #stop_name
@@ -54,6 +54,7 @@ class InitialMigration < ActiveRecord::Migration[5.1]
 
     create_table "stations", id: :uuid do |t|
       t.string   "id_shortened"
+      t.string   "external_id"
       t.uuid     "agency_id"
       t.uuid     "direction_id"
       t.uuid     "route_id"
