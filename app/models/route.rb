@@ -24,6 +24,6 @@ class Route < ApplicationRecord
 
   def self.ci_search(name:)
     return nil if name.blank?
-    find_by("LOWER(external_id) ILIKE ?", name.downcase)
+    find_by("LOWER(short_name) ILIKE ?", name.downcase)
   end
 end

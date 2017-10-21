@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe Stop, type: :model do
   it { is_expected.to belong_to :agency }
-  it { is_expected.to belong_to :stop }
   it { is_expected.to belong_to :route }
 
   describe "validations" do
@@ -83,25 +82,25 @@ describe Stop, type: :model do
     it "returns false if the external_id is blank" do
       FactoryBot.create :stop, name: "Damen", external_id: 1234
       test_subject = nil
-      expect(described_class.stopid_valid?(external_id: test_subject)).to be_falsey
+      expect(described_class.stop_id_valid?(stop_id: test_subject)).to be_falsey
     end
 
     it "returns false if the external_id is empty" do
       FactoryBot.create :stop, name: "Western", external_id: 1234
       test_subject = ""
-      expect(described_class.stopid_valid?(external_id: test_subject)).to be_falsey
+      expect(described_class.stop_id_valid?(stop_id: test_subject)).to be_falsey
     end
 
     it "returns true if the external_id matches an available stop" do
       FactoryBot.create :stop, name: "Clark/Division", external_id: 1234
       test_subject = 1234
-      expect(described_class.stopid_valid?(external_id: test_subject)).to be_truthy
+      expect(described_class.stop_id_valid?(stop_id: test_subject)).to be_truthy
     end
 
     it "returns false if the external_id does not match an available submission" do
       FactoryBot.create :stop, name: "Belmont", external_id: 1234
       test_subject = 3425
-      expect(described_class.stopid_valid?(external_id: test_subject)).to be_falsey
+      expect(described_class.stop_id_valid?(stop_id: test_subject)).to be_falsey
     end
   end
 end
