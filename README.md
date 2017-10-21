@@ -45,14 +45,16 @@
 
 ### Setup Heroku
 
-First, you'll need to ask to be added as a collaborator to the Heroku projects for access.
+First, you'll need to ask to be added as a collaborator to the Heroku projects for access.  
 
-Second, you'll need to connect your local git repo to the heroku repos:
+Second, you'll need to connect your local git repo to the heroku repos:  
+
 * connect to staging: `git remote add staging https://git.heroku.com/transport-server-staging.git`
 * connect to production: `git remote add production https://git.heroku.com/transport-server-production.git`
 * review your remotes: `git remote -v`
 
 You should see something like this:
+
 ```
 origin  https://github.com/allaboardapps/transport-server.git (fetch)
 origin  https://github.com/allaboardapps/transport-server.git (push)
@@ -61,6 +63,7 @@ production  https://git.heroku.com/transport-server-production.git (push)
 staging https://git.heroku.com/transport-server-staging.git (fetch)
 staging https://git.heroku.com/transport-server-staging.git (push)
 ```
+
 ### Setup RVM
 
 * Ref: https://gist.github.com/wrburgess/a6fc079cee6f14fc601b1
@@ -73,7 +76,7 @@ staging https://git.heroku.com/transport-server-staging.git (push)
 * Ref: https://gist.github.com/wrburgess/a6fc079cee6f14fc601b
 * Update ruby: `rvm get stable --ruby`
 * Confirm ruby version changed: `ruby -v`
-* Create `.ruby-version` file in root dir with ruby version number, ex: `2.4.1`
+* Create `.ruby-version` file in root dir with ruby version number, example: `2.4.2`
 
 ### Setup Environment Variables
 
