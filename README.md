@@ -1,11 +1,5 @@
 # Transport Server
 
-## Documentation
-
-* We use [YARD](http://yardoc.org) for documentation
-* To update docs, run `yard doc`
-* To view docs locally, run `yard server` and visit http://localhost:8808
-
 ## Heroku Versions
 
 ### Staging

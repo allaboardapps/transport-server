@@ -42,7 +42,6 @@ group :development do
   gem "letter_opener_web", "1.3.1"
   gem "listen", "3.1.5"
   gem "web-console", "3.5.1"
-  gem "yard", "0.9.9"
 end
 
 group :test do
