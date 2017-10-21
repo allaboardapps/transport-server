@@ -16,11 +16,11 @@ gem "pg", "0.21.0"
 gem "postmark-rails", "0.15.0"
 gem "puma", "3.10.0"
 gem "rest-client", "2.0.2"
-gem "rollbar", "2.15.1"
+gem "rollbar", "2.15.4"
 gem "sass-rails", "5.0.6"
 gem "scenic", "1.4.0"
 gem "settingslogic", "2.0.9"
-gem "time_difference", "0.5.0"
+gem "time_difference", "0.7.0"
 gem "uglifier", "3.2.0"
 
 group :production do
@@ -31,7 +31,7 @@ group :development, :test do
   gem "brakeman", "4.0.1", require: false
   gem "bundler-audit", "0.6.0", require: false
   gem "byebug", "9.1.0"
-  gem "factory_bot_rails", "4.8.0"
+  gem "factory_girl_rails", "4.8.2"
   gem "hakiri", "0.7.2", require: false
   gem "pry-rails", "0.3.6"
   gem "rails_db", "1.6.0"
