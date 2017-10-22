@@ -2,7 +2,7 @@ class RequestHandler
   def self.process(params)
     slots = params[:request][:intent][:slots]
 
-    conn = {
+    payload = {
       session_log_id: "",
       request: {
         version: params[:version],
@@ -32,28 +32,28 @@ class RequestHandler
     }
 
     session_log = SessionLog.create(
-      version: conn[:request][:version].to_f,
-      intent_name: conn[:request][:intent_name],
-      session_new: conn[:request][:session_new],
-      session_id: conn[:request][:session_id],
-      application_id: conn[:request][:application_id],
-      user_id: conn[:request][:user_id],
-      request_id: conn[:request][:request_id],
-      slot_station_id: conn[:request][:slots][:station_id],
-      slot_station_name: conn[:request][:slots][:station_name],
-      slot_direction: conn[:request][:slots][:direction],
-      slot_route: conn[:request][:slots][:route],
+      version: payload[:request][:version].to_f,
+      intent_name: payload[:request][:intent_name],
+      session_new: payload[:request][:session_new],
+      session_id: payload[:request][:session_id],
+      application_id: payload[:request][:application_id],
+      user_id: payload[:request][:user_id],
+      request_id: payload[:request][:request_id],
+      slot_station_id: payload[:request][:slots][:station_id],
+      slot_station_name: payload[:request][:slots][:station_name],
+      slot_direction: payload[:request][:slots][:direction],
+      slot_route: payload[:request][:slots][:route],
       ssml: "",
       slot_to_elicit: "",
       should_end_session: false,
       template: "",
-      conn_request_body: conn.to_json,
+      payload_request_body: payload.to_json,
       request_body: params.to_json,
-      conn_response_body: {},
+      payload_response_body: {},
       response_body: {}
     )
-    conn[:session_log_id] = session_log.id
+    payload[:session_log_id] = session_log.id
 
-    conn
+    payload
   end
 end

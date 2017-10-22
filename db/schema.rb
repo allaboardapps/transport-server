@@ -19,17 +19,16 @@ ActiveRecord::Schema.define(version: 20170820225307) do
 
   create_table "agencies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "id_shortened"
-    t.string "external_id"
-    t.string "name"
-    t.string "acronym"
-    t.string "url"
-    t.string "timezone"
-    t.string "lang"
-    t.string "phone"
-    t.string "fare_url"
-    t.string "email"
-    t.jsonb "diction"
-    t.boolean "fake", default: false
+    t.string "external_id", comment: "GTFS agency_id"
+    t.string "name", comment: "GTFS agency_name"
+    t.string "url", comment: "GTFS agency_url"
+    t.string "timezone", comment: "GTFS agency_timezone, http://en.wikipedia.org/wiki/List_of_tz_zones"
+    t.string "lang", comment: "GTFS agency_lang, two-letter ISO 639-1 code"
+    t.string "phone", comment: "GTFS agency_phone"
+    t.string "fare_url", comment: "GTFS agency_fare_url"
+    t.string "email", comment: "GTFS agency_email"
+    t.string "acronym", comment: "custom"
+    t.jsonb "diction", comment: "custom"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,7 +39,6 @@ ActiveRecord::Schema.define(version: 20170820225307) do
     t.string "name"
     t.string "external_id"
     t.jsonb "diction"
-    t.boolean "fake", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,9 +76,9 @@ ActiveRecord::Schema.define(version: 20170820225307) do
     t.string "slot_to_elicit"
     t.string "template"
     t.boolean "should_end_session"
-    t.jsonb "conn_request_body"
+    t.jsonb "payload_request_body"
     t.jsonb "request_body"
-    t.jsonb "conn_response_body"
+    t.jsonb "payload_response_body"
     t.jsonb "response_body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -109,19 +107,24 @@ ActiveRecord::Schema.define(version: 20170820225307) do
 
   create_table "stops", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "id_shortened"
-    t.string "external_id"
-    t.uuid "agency_id"
-    t.uuid "station_id"
-    t.uuid "route_id"
-    t.string "name"
-    t.string "description"
-    t.string "latitude"
-    t.string "longitude"
-    t.string "station_type"
-    t.boolean "wheelchair_boarding"
-    t.string "directions", default: [], array: true
-    t.jsonb "diction"
-    t.boolean "fake", default: false
+    t.string "external_id", comment: "GTFS stop_id"
+    t.string "code", comment: "GTFS stop_code"
+    t.string "name", comment: "GTFS stop_name"
+    t.string "description", comment: "GTFS stop_desc"
+    t.string "latitude", comment: "GTFS stop_lat"
+    t.string "longitude", comment: "GTFS stop_lon"
+    t.string "zone_id"
+    t.string "url", comment: "GTFS stop_url"
+    t.integer "location_type", comment: "0: Stop, 1: Station, 2: Station Entrace/Exit"
+    t.string "parent_station"
+    t.string "timezone", comment: "GTFS agency_timezone, http://en.wikipedia.org/wiki/List_of_tz_zones"
+    t.integer "wheelchair_boarding", comment: "0: no accessibility info, 1: wheelchair might use, 2: wheelchair boarding is not possible"
+    t.uuid "station_id", comment: "custom"
+    t.uuid "route_id", comment: "custom"
+    t.string "station_type", comment: "custom"
+    t.uuid "agency_id", comment: "custom"
+    t.string "directions", default: [], comment: "custom", array: true
+    t.jsonb "diction", comment: "custom"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -148,8 +151,7 @@ ActiveRecord::Schema.define(version: 20170820225307) do
      FROM (((stops
        LEFT JOIN stations ON ((stations.id = stops.station_id)))
        JOIN directions ON ((directions.id = stations.direction_id)))
-       JOIN routes ON ((routes.id = stations.route_id)))
-    WHERE ((stops.fake = false) AND (stations.fake = false) AND (routes.fake = false) AND (directions.fake = false));
+       JOIN routes ON ((routes.id = stations.route_id)));
   SQL
 
 end

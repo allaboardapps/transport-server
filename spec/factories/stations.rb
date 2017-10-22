@@ -9,6 +9,5 @@ FactoryBot.define do
     longitude { Faker::Address.longitude }
     station_type { StationTypes::TRAIN }
     diction(en: "18th 54th Cermak bound", es: "18th 54th Cermak bound")
-    fake false
   end
 end

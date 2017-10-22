@@ -9,9 +9,6 @@ class Stop < ApplicationRecord
   belongs_to :station
   belongs_to :agency
 
-  scope :actives, -> { where(fake: false) }
-  scope :fakes, -> { where(fake: true) }
-
   def self.options_for_select
     all.map { |item| [item.name, item.id] }
   end
@@ -34,7 +31,7 @@ class Stop < ApplicationRecord
     { name: Slots::STOP_ID, present: true, valid: false, value: stop_id }
   end
 
-  def self.ci_search(name:)
+  def self.ci_name_search(name:)
     return nil if name.blank?
     find_by("LOWER(name) ILIKE ?", name.downcase)
   end

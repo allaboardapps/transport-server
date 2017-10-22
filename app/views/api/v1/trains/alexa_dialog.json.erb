@@ -5,12 +5,12 @@
   "response": {
     "outputSpeech": {
       "type": "SSML",
-      "ssml": "<%= raw @conn[:response][:ssml] %>"
+      "ssml": "<%= raw @payload[:response][:ssml] %>"
     },
     "directives": [
       {
         "type": "Dialog.ElicitSlot",
-        "slotToElicit": "<%= raw @conn[:response][:slot_to_elicit] %>",
+        "slotToElicit": "<%= raw @payload[:response][:slot_to_elicit] %>",
         "updatedIntent": {
           "name": "StationDirect",
           "confirmationStatus": "NONE",
@@ -18,15 +18,15 @@
             "station_id": {
               "name": "station_id",
               "confirmationStatus": "NONE"
-              <% if @conn[:response][:slots][:station_id].present? %>
-                , "value": "<%= raw @conn[:response][:slots][:station_id] %>"
+              <% if @payload[:response][:slots][:station_id].present? %>
+                , "value": "<%= raw @payload[:response][:slots][:station_id] %>"
               <% end %>
             },
             "direction": {
               "name": "direction",
               "confirmationStatus": "NONE"
-              <% if @conn[:response][:slots][:direction].present? %>
-                , "value": "<%= raw @conn[:response][:slots][:direction] %>"
+              <% if @payload[:response][:slots][:direction].present? %>
+                , "value": "<%= raw @payload[:response][:slots][:direction] %>"
               <% end %>
             }
           }

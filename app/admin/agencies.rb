@@ -1,10 +1,18 @@
 ActiveAdmin.register Agency do
   menu parent: "Systems", priority: 100
 
-  permit_params :name, :acronym, :diction, :fake
-
-  scope :actives, default: true
-  scope :fakes
+  permit_params(
+    :external_id,
+    :name,
+    :url,
+    :timezone,
+    :lang,
+    :phone,
+    :fare_url,
+    :email,
+    :acronym,
+    :diction
+  )
 
   config.sort_order = "name asc, created_at desc"
 
@@ -12,11 +20,10 @@ ActiveAdmin.register Agency do
   filter :id_eq, label: "UUID"
   filter :name
   filter :acronym
-  filter :fake
 
   index do
     column "Short ID" do |agency|
-      link_to agency.id_shortened, admin_transport_system_path(agency) if agency.id_shortened.present?
+      link_to agency.id_shortened, admin_agency_path(agency) if agency.id_shortened.present?
     end
     column :name
     column :acronym
@@ -27,10 +34,16 @@ ActiveAdmin.register Agency do
 
   form do |f|
     f.inputs do
+      f.input :external_id
       f.input :name
+      f.input :url
+      f.input :timezone
+      f.input :lang
+      f.input :phone
+      f.input :fare_url
+      f.input :email
       f.input :acronym
       f.input :diction, as: :text
-      f.input :fake
     end
     f.actions
   end
@@ -41,15 +54,14 @@ ActiveAdmin.register Agency do
       row :id
       row :external_id
       row :name
-      row :acronym
       row :url
       row :timezone
       row :lang
       row :phone
       row :fare_url
       row :email
+      row :acronym
       row :diction
-      row :fake
       row :updated_at
       row :created_at
     end

@@ -1,5 +1,5 @@
 ActiveAdmin.register Station do
-  menu parent: "Systems", priority: 400
+  menu parent: "Systems", priority: 10000
 
   permit_params :name, :station_type, :diction, :fake
 
@@ -8,9 +8,6 @@ ActiveAdmin.register Station do
       super.includes(:agency)
     end
   end
-
-  scope :actives, default: true
-  scope :fakes
 
   config.sort_order = "name asc, created_at desc"
 
@@ -25,7 +22,6 @@ ActiveAdmin.register Station do
   filter :stop_name
   filter :description
   filter :station_type
-  filter :fake
 
   index do
     column "Short ID" do |station|

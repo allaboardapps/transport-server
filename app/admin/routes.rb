@@ -1,5 +1,5 @@
 ActiveAdmin.register Route do
-  menu parent: "Systems", priority: 300
+  menu parent: "Systems", priority: 600
 
   permit_params(
     :agency_id,
@@ -10,8 +10,7 @@ ActiveAdmin.register Route do
     :route_type,
     :route_url,
     :color_hex,
-    :diction,
-    :fake
+    :diction
   )
 
   controller do
@@ -19,9 +18,6 @@ ActiveAdmin.register Route do
       super.includes(:agency)
     end
   end
-
-  scope :actives, default: true
-  scope :fakes
 
   config.sort_order = "name asc, created_at desc"
 
@@ -34,7 +30,6 @@ ActiveAdmin.register Route do
   filter :external_id
   filter :description
   filter :route_type
-  filter :fake
 
   index do
     column "Short ID" do |route|
@@ -63,7 +58,6 @@ ActiveAdmin.register Route do
       f.input :route_url
       f.input :color_hex
       f.input :diction, as: :text
-      f.input :fake
     end
     f.actions
   end
@@ -81,7 +75,6 @@ ActiveAdmin.register Route do
       row :route_url
       row :color_hex
       row :diction
-      row :fake
       row :updated_at
       row :created_at
     end

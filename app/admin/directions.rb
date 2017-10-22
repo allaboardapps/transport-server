@@ -1,10 +1,10 @@
 ActiveAdmin.register Direction do
   menu parent: "Systems", priority: 200
 
-  permit_params :name, :diction, :fake
-
-  scope :actives, default: true
-  scope :fakes
+  permit_params(
+    :name,
+    :diction
+  )
 
   config.sort_order = "name asc, created_at desc"
 
@@ -13,7 +13,6 @@ ActiveAdmin.register Direction do
   filter :agency, as: :select
   filter :name
   filter :system_identifier
-  filter :fake
 
   index do
     column "Short ID" do |direction|
@@ -36,7 +35,6 @@ ActiveAdmin.register Direction do
       f.input :name
       f.input :system_identifier
       f.input :diction, as: :text
-      f.input :fake
     end
     f.actions
   end
@@ -50,7 +48,6 @@ ActiveAdmin.register Direction do
       row :name
       row :system_identifier
       row :diction
-      row :fake
       row :updated_at
       row :created_at
     end

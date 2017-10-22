@@ -14,8 +14,8 @@ describe Stop, type: :model do
     end
   end
 
-  describe ".valid?" do
-    it "returns false if the stop is blank" do
+  describe ".name_valid" do
+    it "returns false if the stop name is blank" do
       FactoryBot.create :stop, name: "Damen"
       test_subject = nil
       expect(described_class.name_valid?(name: test_subject)).to be_falsey
@@ -46,35 +46,35 @@ describe Stop, type: :model do
     end
   end
 
-  describe ".ci_search" do
+  describe ".ci_name_search" do
     it "returns no results if the name is blank" do
       FactoryBot.create :stop, name: "Fullerton"
       test_subject = nil
-      expect(described_class.ci_search(name: test_subject)).to be_nil
+      expect(described_class.ci_name_search(name: test_subject)).to be_nil
     end
 
     it "returns no results if the name is empty" do
       FactoryBot.create :stop, name: "Howard"
       test_subject = ""
-      expect(described_class.ci_search(name: test_subject)).to be_nil
+      expect(described_class.ci_name_search(name: test_subject)).to be_nil
     end
 
     it "returns true if the stop name matches an available stop" do
       FactoryBot.create :stop, name: "Thorndale"
       test_subject = "thorndale"
-      expect(described_class.ci_search(name: test_subject)).not_to be_nil
+      expect(described_class.ci_name_search(name: test_subject)).not_to be_nil
     end
 
     it "returns true if the stop name matches an available stop, regardless of case" do
       FactoryBot.create :stop, name: "Midway"
       test_subject = "miDWaY"
-      expect(described_class.ci_search(name: test_subject)).not_to be_nil
+      expect(described_class.ci_name_search(name: test_subject)).not_to be_nil
     end
 
     it "returns false if the stop name does not match an available stop" do
       FactoryBot.create :stop, name: "O'Hare"
       test_subject = "ouch"
-      expect(described_class.ci_search(name: test_subject)).to be_nil
+      expect(described_class.ci_name_search(name: test_subject)).to be_nil
     end
   end
 

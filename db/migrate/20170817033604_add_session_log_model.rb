@@ -17,9 +17,9 @@ class AddSessionLogModel < ActiveRecord::Migration[5.1]
       t.string    "slot_to_elicit"
       t.string    "template"
       t.boolean   "should_end_session"
-      t.jsonb     "conn_request_body"
+      t.jsonb     "payload_request_body"
       t.jsonb     "request_body"
-      t.jsonb     "conn_response_body"
+      t.jsonb     "payload_response_body"
       t.jsonb     "response_body"
       t.timestamps
     end

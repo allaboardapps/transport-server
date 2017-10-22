@@ -23,10 +23,5 @@ LEFT JOIN stations
 INNER JOIN directions
   ON directions.id = stations.direction_id
 INNER JOIN routes
-  ON routes.id = stations.route_id
-WHERE
-  stops.fake = false
-  AND stations.fake = false
-  AND routes.fake = false
-  AND directions.fake = false;
+  ON routes.id = stations.route_id;
 

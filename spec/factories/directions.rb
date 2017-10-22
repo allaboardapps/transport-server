@@ -3,6 +3,5 @@ FactoryBot.define do
     name "North"
     external_id "N"
     diction(en: "north", es: "norte")
-    fake false
   end
 end

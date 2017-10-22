@@ -1,6 +1,6 @@
 class ResponseHandler
-  def self.process(conn)
-    intent = conn[:request][:intent_name]
+  def self.process(payload)
+    intent = payload[:request][:intent_name]
 
     # station_id = { present: true, valid: true, value: 30126 }
     # station_id = { present: true, valid: false, value: 301 }
@@ -19,29 +19,29 @@ class ResponseHandler
     #   I don't know that direction. You can say North, South, East, or West
 
     if intent == Intents::STATION_DIRECT
-      station_id_slot = conn[:request][:slots][:station_id]
-      direction_slot = conn[:request][:slots][:direction]
+      station_id_slot = payload[:request][:slots][:station_id]
+      direction_slot = payload[:request][:slots][:direction]
       station_id = Station.validate_by_stopid(stopid: station_id_slot)
       direction = Direction.validate_by_name(name: direction_slot)
 
-      conn[:response][:slots][:station_id] = station_id[:value]
-      conn[:response][:slots][:direction] = direction[:value]
+      payload[:response][:slots][:station_id] = station_id[:value]
+      payload[:response][:slots][:direction] = direction[:value]
 
       if !station_id[:valid]
-        conn[:response][:ssml] = Station.render_ssml(slot: station_id)
-        conn[:response][:slot_to_elicit] = Slots::STATION_ID
-        conn[:response][:template] = "dialog"
-        conn[:response][:should_end_session] = false
+        payload[:response][:ssml] = Station.render_ssml(slot: station_id)
+        payload[:response][:slot_to_elicit] = Slots::STATION_ID
+        payload[:response][:template] = "dialog"
+        payload[:response][:should_end_session] = false
       elsif !direction[:valid]
-        conn[:response][:ssml] = Direction.render_ssml(slot: direction)
-        conn[:response][:slot_to_elicit] = Slots::DIRECTION
-        conn[:response][:template] = "dialog"
-        conn[:response][:should_end_session] = false
+        payload[:response][:ssml] = Direction.render_ssml(slot: direction)
+        payload[:response][:slot_to_elicit] = Slots::DIRECTION
+        payload[:response][:template] = "dialog"
+        payload[:response][:should_end_session] = false
       else
-        ssml = CompletedPhraseBuilder.render_ssml(conn)
-        conn[:response][:ssml] = ssml
-        conn[:response][:template] = "completed"
-        conn[:response][:should_end_session] = true
+        ssml = CompletedPhraseBuilder.render_ssml(payload)
+        payload[:response][:ssml] = ssml
+        payload[:response][:template] = "completed"
+        payload[:response][:should_end_session] = true
       end
     elsif intent == Intents::NEXT_TRAIN
       # direction = params[:intent][:slots][Slots::DIRECTION]
@@ -81,15 +81,15 @@ class ResponseHandler
       # end
     end
 
-    session_log = SessionLog.find_by(id: conn[:session_log_id])
+    session_log = SessionLog.find_by(id: payload[:session_log_id])
     session_log.update(
-      ssml: conn[:response][:ssml],
-      slot_to_elicit: conn[:response][:slot_to_elicit],
-      should_end_session: conn[:response][:should_end_session],
-      template: conn[:response][:template],
-      conn_response_body: conn.to_json
+      ssml: payload[:response][:ssml],
+      slot_to_elicit: payload[:response][:slot_to_elicit],
+      should_end_session: payload[:response][:should_end_session],
+      template: payload[:response][:template],
+      payload_response_body: payload.to_json
     )
 
-    conn
+    payload
   end
 end

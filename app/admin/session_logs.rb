@@ -68,14 +68,14 @@ ActiveAdmin.register SessionLog do
       row :request_body do
         "<pre>#{JSON.pretty_generate(JSON.parse(session_log.request_body))}</pre>".html_safe if session_log.request_body.present?
       end
-      row :conn_request_body do
-        "<pre>#{JSON.pretty_generate(JSON.parse(session_log.conn_request_body))}</pre>".html_safe if session_log.conn_request_body.present?
+      row :payload_request_body do
+        "<pre>#{JSON.pretty_generate(JSON.parse(session_log.payload_request_body))}</pre>".html_safe if session_log.payload_request_body.present?
       end
       row :cta_response_body do
         "<pre>#{JSON.pretty_generate(JSON.parse(session_log.cta_response_body))}</pre>".html_safe if session_log.response_body.present?
       end
-      row :conn_response_body do
-        "<pre>#{JSON.pretty_generate(JSON.parse(session_log.conn_response_body))}</pre>".html_safe if session_log.conn_response_body.present?
+      row :payload_response_body do
+        "<pre>#{JSON.pretty_generate(JSON.parse(session_log.payload_response_body))}</pre>".html_safe if session_log.payload_response_body.present?
       end
       row :response_body do
         "<pre>#{JSON.pretty_generate(JSON.parse(session_log.response_body))}</pre>".html_safe if session_log.response_body.present?
