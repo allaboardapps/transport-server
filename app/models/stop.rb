@@ -15,7 +15,7 @@ class Stop < ApplicationRecord
 
   def self.name_valid?(name:)
     return false if name.blank?
-    return true if ci_search(name: name).present?
+    return true if ci_name_search(name: name).present?
     false
   end
 

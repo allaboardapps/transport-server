@@ -49,7 +49,7 @@ csv.each do |row|
     route_url: row["route_url"],
     diction: { en: row["route_long_name"], es: row["route_long_name"] },
     color_hex: row["route_color"]
-  ).find_or_create_by(external_id: row["external_id"])
+  ).find_or_create_by(agency: agency, external_id: row["external_id"])
 end
 puts "END:   Create routes, Actives Count: #{Route.all.count}"
 
@@ -59,7 +59,7 @@ file_path = Rails.root.join("db", "imports", "cta_stations.csv")
 csv_text = open(file_path)
 csv = CSV.parse(csv_text, headers: true)
 csv.each do |row|
-  route = Route.find_by(external_id: row["stop_id"])
+  route = Route.find_by(agency: agency, external_id: row["stop_id"])
 
   Station.create_with(
     agency: agency,

@@ -49,7 +49,6 @@ group :test do
   gem "rspec-instafail", "1.0.0", require: false
   gem "rspec-json_expectations", "2.1.0"
   gem "rspec-rails", "3.7.1"
-  # gem "rspec-retry", "0.5.5" # Not keeping up with rspec
   gem "rubocop-rspec", "1.19.0"
   gem "shoulda-matchers", "3.1.2"
 end

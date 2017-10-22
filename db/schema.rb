@@ -45,16 +45,17 @@ ActiveRecord::Schema.define(version: 20170820225307) do
 
   create_table "routes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "id_shortened"
-    t.string "external_id"
-    t.uuid "agency_id"
+    t.string "external_id", comment: "GTFS route_id"
     t.string "name"
-    t.string "short_name"
-    t.string "description"
-    t.string "route_type"
-    t.string "route_url"
-    t.string "color_hex"
-    t.jsonb "diction"
-    t.boolean "fake", default: false
+    t.string "short_name", comment: "GTFS route_short_name"
+    t.string "long_name", comment: "GTFS route_long_name"
+    t.string "description", comment: "GTFS route_desc"
+    t.integer "route_type", comment: "0 - 7, type of transportation used on a route"
+    t.string "url", comment: "GTFS route_url"
+    t.string "color", comment: "GTFS route_color"
+    t.string "color_hex", comment: "GTFS route_text_color, 6-char hexadecimal number"
+    t.uuid "agency_id", comment: "custom"
+    t.jsonb "diction", comment: "custom"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -100,7 +101,6 @@ ActiveRecord::Schema.define(version: 20170820225307) do
     t.string "longitude"
     t.string "station_type"
     t.jsonb "diction"
-    t.boolean "fake", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

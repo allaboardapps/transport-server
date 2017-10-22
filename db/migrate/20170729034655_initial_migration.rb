@@ -30,7 +30,6 @@ class InitialMigration < ActiveRecord::Migration[5.1]
     create_table "routes", id: :uuid do |t|
       t.string   "id_shortened"
       t.string   "external_id", comment: "GTFS route_id"
-      t.uuid     "agency_id"
       t.string   "name"
       t.string   "short_name", comment: "GTFS route_short_name"
       t.string   "long_name", comment: "GTFS route_long_name"
@@ -39,7 +38,8 @@ class InitialMigration < ActiveRecord::Migration[5.1]
       t.string   "url", comment: "GTFS route_url"
       t.string   "color", comment: "GTFS route_color"
       t.string   "color_hex", comment: "GTFS route_text_color, 6-char hexadecimal number"
-      t.jsonb    "diction"
+      t.uuid     "agency_id", comment: "custom"
+      t.jsonb    "diction", comment: "custom"
       t.timestamps
     end
 

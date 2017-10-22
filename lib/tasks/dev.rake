@@ -1,7 +1,6 @@
 namespace :dev do
   desc "Reload the databases: drop, create, migrate"
   task :rebuild do
-    input = ''
     STDOUT.puts "Drop and recreate all databases? y[es] or n[o]"
     input = STDIN.gets.chomp
     if input == "y"
