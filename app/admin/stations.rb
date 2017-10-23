@@ -1,7 +1,7 @@
 ActiveAdmin.register Station do
   menu parent: "Systems", priority: 10000
 
-  permit_params :name, :station_type, :diction, :fake
+  permit_params :name, :station_type, :diction
 
   controller do
     def scoped_collection
@@ -55,7 +55,6 @@ ActiveAdmin.register Station do
       f.input :latitude
       f.input :longitude
       f.input :diction, as: :text
-      f.input :fake
     end
     f.actions
   end
@@ -76,7 +75,6 @@ ActiveAdmin.register Station do
       row :latitude
       row :longitude
       row :diction
-      row :fake
       row :updated_at
       row :created_at
     end

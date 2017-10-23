@@ -37,6 +37,8 @@ ActiveAdmin.register Stop do
   filter :route, as: :select
   filter :code
   filter :name
+  filter :location_type
+  filter :station_type
 
   index do
     column "Short ID" do |stop|
@@ -65,11 +67,11 @@ ActiveAdmin.register Stop do
       f.input :zone_id
       f.input :url
       f.input :location_type
+      f.input :station_type
       f.input :parent_station
       f.input :timezone
       f.input :wheelchair_boarding
       f.input :station_id
-      f.input :station_type
       f.input :agency_id
       f.input :directions
       f.input :diction, as: :text
@@ -90,11 +92,11 @@ ActiveAdmin.register Stop do
       row :zone_id
       row :url
       row :location_type
+      row :station_type
       row :parent_station
       row :timezone
       row :wheelchair_boarding
       row :station_id
-      row :station_type
       row :agency_id
       row :directions
       row :diction, as: :text

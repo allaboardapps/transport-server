@@ -1,0 +1,33 @@
+{
+  "session": {
+    "sessionId": "amzn1.echo-api.session.3109cd1e-e1af-433a-8016-fa044759e473",
+    "application": {
+      "applicationId": "amzn1.ask.skill.37a0bd36-fd3a-4236-84ef-ed1d8aa6b612"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "amzn1.ask.account.AEDB4PAT74KR4DS554RNX4GKHZIKVWAPQQJC2WRDLS2YDEOXVAWKS7TFYSNGISOLKNAU3YFG6S5JOIABRKNW2BOYXQATHJDA4RPBMMJEL53TMSRGCY723KLUQUBBD3VVHVNBOSXEXXFYPSLUVGR2Y5SHGNN5HI3LYOYO5L42BP255QKU3YWRICZYH5MYU2CSUMBXMU7LXL7TKII"
+    },
+    "new": true
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "amzn1.echo-api.request.b9d161a5-089e-45cc-9a24-5f9e14eba0b3",
+    "locale": "en-US",
+    "timestamp": "2017-07-28T23:37:20Z",
+    "intent": {
+      "name": "StationDirect",
+      "slots": {
+        "station_id": {
+          "name": "station_id",
+          "value": 30126
+        },
+        "direction": {
+          "name": "direction",
+          "value": "north"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
