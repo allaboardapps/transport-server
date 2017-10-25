@@ -2,34 +2,18 @@ class ResponseHandler
   def self.process(payload)
     intent = payload[:request][:intent_name]
 
-    # station_id = { present: true, valid: true, value: 30126 }
-    # station_id = { present: true, valid: false, value: 301 }
-    # station_id = { present: false, valid: false, value: nil }
-
-    # if station is blank
-    #   Which station id?
-
-    # if station is present, but invalid
-    #   I don't know that station ID. Station numbers are five digits long and start with the number 3
-
-    # if direction is blank
-    #   What direction?
-
-    # if direction is present, but invalid
-    #   I don't know that direction. You can say North, South, East, or West
-
-    if intent == Intents::STATION_DIRECT
-      station_id_slot = payload[:request][:slots][:station_id]
+    if intent == Intents::STOP_DIRECT
+      stop_id_slot = payload[:request][:slots][:stop_id]
       direction_slot = payload[:request][:slots][:direction]
-      station_id = Station.validate_by_stopid(stopid: station_id_slot)
+      stop_id = Stop.validate_by_stopid(stopid: stop_id_slot)
       direction = Direction.validate_by_name(name: direction_slot)
 
-      payload[:response][:slots][:station_id] = station_id[:value]
+      payload[:response][:slots][:stop_id] = stop_id[:value]
       payload[:response][:slots][:direction] = direction[:value]
 
-      if !station_id[:valid]
-        payload[:response][:ssml] = Station.render_ssml(slot: station_id)
-        payload[:response][:slot_to_elicit] = Slots::STATION_ID
+      if !stop_id[:valid]
+        payload[:response][:ssml] = Stop.render_ssml(slot: stop_id)
+        payload[:response][:slot_to_elicit] = Slots::STOP_ID
         payload[:response][:template] = "dialog"
         payload[:response][:should_end_session] = false
       elsif !direction[:valid]
@@ -46,7 +30,7 @@ class ResponseHandler
     elsif intent == Intents::NEXT_TRAIN
       # direction = params[:intent][:slots][Slots::DIRECTION]
       # route = params[:intent][:slots][Slots::ROUTE]
-      # station = params[:intent][:slots][Slots::STATION]
+      # stop = params[:intent][:slots][Slots::STOP]
 
       # if !Direction.valid?(name: direction)
       #   {
@@ -60,17 +44,17 @@ class ResponseHandler
       #     state: AlexaDialogStates::IN_PROGRESS,
       #     content: Slots::ROUTE
       #   }
-      # elsif !Station.name_valid?(name: station)
+      # elsif !Stop.name_valid?(name: stop)
       #   {
       #     intent: Intents::NEXT_TRAIN,
       #     state: AlexaDialogStates::IN_PROGRESS,
-      #     content: Slots::STATION
+      #     content: Slots::STOP
       #   }
       # else
       #   slot_values = {
       #     direction: direction,
       #     route: route,
-      #     station: station
+      #     stop: stop
       #   }
 
       #   {

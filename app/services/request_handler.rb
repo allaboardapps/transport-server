@@ -16,8 +16,8 @@ class RequestHandler
         timestamp: params[:request][:timestamp],
         intent_name: params[:request][:intent][:name],
         slots: {
-          station_id: slots.dig(:station_id, :value),
-          station: slots.dig(:station, :value),
+          stop_id: slots.dig(:stop_id, :value),
+          stop: slots.dig(:stop, :value),
           route: slots.dig(:route, :value),
           direction: slots.dig(:direction, :value)
         }
@@ -39,8 +39,8 @@ class RequestHandler
       application_id: payload[:request][:application_id],
       user_id: payload[:request][:user_id],
       request_id: payload[:request][:request_id],
-      slot_station_id: payload[:request][:slots][:station_id],
-      slot_station_name: payload[:request][:slots][:station_name],
+      slot_stop_id: payload[:request][:slots][:stop_id],
+      slot_stop_name: payload[:request][:slots][:stop_name],
       slot_direction: payload[:request][:slots][:direction],
       slot_route: payload[:request][:slots][:route],
       ssml: "",

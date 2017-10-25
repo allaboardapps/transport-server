@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe Direction, type: :model do
   it { is_expected.to belong_to :agency }
-  it { is_expected.to have_many :stations }
 
   describe "validations" do
     it "has a valid factory" do
@@ -54,35 +53,35 @@ describe Direction, type: :model do
     end
   end
 
-  describe ".ci_search" do
+  describe ".ci_name_search" do
     it "returns no results if a test_subject is blank" do
       FactoryBot.create :direction, name: "North"
       test_subject = nil
-      expect(described_class.ci_search(name: test_subject)).to be_nil
+      expect(described_class.ci_name_search(name: test_subject)).to be_nil
     end
 
     it "returns no results if a test_subject is empty" do
       FactoryBot.create :direction, name: "North"
       test_subject = ""
-      expect(described_class.ci_search(name: test_subject)).to be_nil
+      expect(described_class.ci_name_search(name: test_subject)).to be_nil
     end
 
     it "returns true if the test_subject name matches an available instance" do
       FactoryBot.create :direction, name: "North"
       test_subject = "north"
-      expect(described_class.ci_search(name: test_subject)).not_to be_nil
+      expect(described_class.ci_name_search(name: test_subject)).not_to be_nil
     end
 
     it "returns true if the test_subject name matches an available instance, regardless of case" do
       FactoryBot.create :direction, name: "North"
       test_subject = "noRtH"
-      expect(described_class.ci_search(name: test_subject)).not_to be_nil
+      expect(described_class.ci_name_search(name: test_subject)).not_to be_nil
     end
 
     it "returns false if the test_subject name does not match an available instance" do
       FactoryBot.create :direction, name: "North"
       test_subject = "norton"
-      expect(described_class.ci_search(name: test_subject)).to be_nil
+      expect(described_class.ci_name_search(name: test_subject)).to be_nil
     end
   end
 end

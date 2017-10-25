@@ -7,8 +7,6 @@ ActiveAdmin.register CtaTrainLocation do
 
   filter :stop_external_id
   filter :stop_name
-  filter :station_external_id
-  filter :station_name
   filter :route_external_id
   filter :route_name
   filter :direction_external_id
@@ -18,8 +16,6 @@ ActiveAdmin.register CtaTrainLocation do
     column :mapid
     column "stop id", :stop_external_id
     column :stop_name
-    column "sta id", :station_external_id
-    column :station_name
     column "rte id", :route_external_id
     column :route_name
     column "dir id", :direction_external_id
@@ -34,10 +30,6 @@ ActiveAdmin.register CtaTrainLocation do
       row :stop_external_id
       row :stop_name
       row :stop_diction
-      row :station_id
-      row :station_external_id
-      row :station_name
-      row :station_diction
       row :route_id
       row :route_external_id
       row :route_name

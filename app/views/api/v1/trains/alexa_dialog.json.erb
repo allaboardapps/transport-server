@@ -12,14 +12,14 @@
         "type": "Dialog.ElicitSlot",
         "slotToElicit": "<%= raw @payload[:response][:slot_to_elicit] %>",
         "updatedIntent": {
-          "name": "StationDirect",
+          "name": "StopDirect",
           "confirmationStatus": "NONE",
           "slots": {
-            "station_id": {
-              "name": "station_id",
+            "stop_id": {
+              "name": "stop_id",
               "confirmationStatus": "NONE"
-              <% if @payload[:response][:slots][:station_id].present? %>
-                , "value": "<%= raw @payload[:response][:slots][:station_id] %>"
+              <% if @payload[:response][:slots][:stop_id].present? %>
+                , "value": "<%= raw @payload[:response][:slots][:stop_id] %>"
               <% end %>
             },
             "direction": {

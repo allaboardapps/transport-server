@@ -1,11 +1,11 @@
 module Intents
   NEXT_TRAIN = "NextTrain".freeze
-  STATION_DIRECT = "StationDirect".freeze
+  STOP_DIRECT = "StopDirect".freeze
 
   def self.all
     [
       Intents::NEXT_TRAIN,
-      Intents::STATION_DIRECT
+      Intents::STOP_DIRECT
     ]
   end
 end

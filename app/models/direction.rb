@@ -6,7 +6,6 @@ class Direction < ApplicationRecord
   end
 
   belongs_to :agency
-  has_many :stations
 
   scope :actives, -> { where(fake: false) }
   scope :fakes, -> { where(fake: true) }
@@ -18,17 +17,17 @@ class Direction < ApplicationRecord
   # TODO: Remove database check for scale (use module)
   def self.valid?(name:)
     return false if name.blank?
-    return true if ci_search(name: name).present?
+    return true if ci_name_search(name: name).present?
     false
   end
 
   def self.validate_by_name(name:)
     return { name: Slots::DIRECTION, present: false, valid: false, value: nil } if name.blank?
-    return { name: Slots::DIRECTION, present: true, valid: true, value: name } if ci_search(name: name).present?
+    return { name: Slots::DIRECTION, present: true, valid: true, value: name } if ci_name_search(name: name).present?
     { name: Slots::DIRECTION, present: true, valid: false, value: name }
   end
 
-  def self.ci_search(name:)
+  def self.ci_name_search(name:)
     return nil if name.blank?
     find_by("LOWER(name) ILIKE ?", name.downcase)
   end

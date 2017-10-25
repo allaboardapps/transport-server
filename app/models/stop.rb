@@ -6,7 +6,6 @@ class Stop < ApplicationRecord
   end
 
   belongs_to :route
-  belongs_to :station
   belongs_to :agency
 
   def self.options_for_select
@@ -41,7 +40,7 @@ class Stop < ApplicationRecord
       if !slot[:present]
         "<speak>Which stop i.d.?</speak>"
       elsif slot[:present] && !slot[:valid]
-        "<speak>Sorry, I don't know that stop i.d.<break time='1s'/>Stop numbers are five digits long and start with the number 3.<break time='1s'/>Please say a valid station i.d.</speak>"
+        "<speak>Sorry, I don't know that stop i.d.<break time='1s'/>Stop numbers are five digits long and start with the number 3.<break time='1s'/>Please say a valid stop i.d.</speak>"
       else
         "<speak>There is something wrong with the stop id processing</speak>"
       end

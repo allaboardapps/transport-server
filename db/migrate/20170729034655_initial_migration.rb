@@ -65,23 +65,5 @@ class InitialMigration < ActiveRecord::Migration[5.1]
       t.jsonb    "diction", comment: "custom"
       t.timestamps
     end
-
-    create_table "stations", id: :uuid do |t|
-      t.string   "id_shortened"
-      t.string   "external_id"
-      t.uuid     "agency_id"
-      t.uuid     "direction_id"
-      t.uuid     "route_id"
-      t.string   "name"
-      t.integer  "mapid"
-      t.integer  "stopid"
-      t.string   "stop_name"
-      t.string   "description"
-      t.string   "latitude"
-      t.string   "longitude"
-      t.string   "station_type"
-      t.jsonb    "diction"
-      t.timestamps
-    end
   end
 end

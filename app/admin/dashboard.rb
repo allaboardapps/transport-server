@@ -11,7 +11,6 @@ ActiveAdmin.register_page "Dashboard" do
             li link_to "Directions", admin_directions_path
             li link_to "Routes", admin_routes_path
             li link_to "Stops", admin_stops_path
-            li link_to "Stations", admin_stations_path
           end
         end
         panel "Skills" do

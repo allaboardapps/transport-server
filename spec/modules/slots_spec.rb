@@ -6,6 +6,6 @@ describe Slots, type: :module do
   end
 
   it "returns a list of all slots" do
-    expect(described_class.all).to include "direction", "route", "station"
+    expect(described_class.all).to include "direction", "route", "stop"
   end
 end

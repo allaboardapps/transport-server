@@ -15,9 +15,9 @@
     {
       "name": "NextTrain",
       "samples": [
-        "Tell me the next {direction} {station} {line} train",
-        "What is the next {direction} {line} at {station}",
-        "What's the next train at {station} going {direction}",
+        "Tell me the next {direction} {stop} {line} train",
+        "What is the next {direction} {line} at {stop}",
+        "What's the next train at {stop} going {direction}",
         "Next train"
       ],
       "slots": [
@@ -27,8 +27,8 @@
           "samples": []
         },
         {
-          "name": "station",
-          "type": "LIST_OF_TRAIN_STATIONS",
+          "name": "stop",
+          "type": "LIST_OF_TRAIN_STOPS",
           "samples": [
             "stop",
             "station"
@@ -165,7 +165,7 @@
       ]
     },
     {
-      "name": "LIST_OF_TRAIN_STATIONS",
+      "name": "LIST_OF_TRAIN_STOPS",
       "values": [
         {
           "id": null,
@@ -211,13 +211,13 @@
       ]
     },
     {
-      "id": "Elicit.Intent-NextTrain.IntentSlot-station",
+      "id": "Elicit.Intent-NextTrain.IntentSlot-stop",
       "promptVersion": "1.0",
       "definitionVersion": "1.0",
       "variations": [
         {
           "type": "PlainText",
-          "value": "What station?"
+          "value": "What stop?"
         }
       ]
     },
@@ -251,12 +251,12 @@
             }
           },
           {
-            "name": "station",
-            "type": "LIST_OF_TRAIN_STATIONS",
+            "name": "stop",
+            "type": "LIST_OF_TRAIN_STOPS",
             "elicitationRequired": true,
             "confirmationRequired": false,
             "prompts": {
-              "elicit": "Elicit.Intent-NextTrain.IntentSlot-station"
+              "elicit": "Elicit.Intent-NextTrain.IntentSlot-stop"
             }
           },
           {

@@ -6,6 +6,6 @@ describe Intents, type: :module do
   end
 
   it "returns a list of all intents" do
-    expect(described_class.all).to include "NextTrain", "StationDirect"
+    expect(described_class.all).to include "NextTrain", "StopDirect"
   end
 end

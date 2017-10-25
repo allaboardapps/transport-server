@@ -71,7 +71,6 @@ ActiveAdmin.register Stop do
       f.input :parent_station
       f.input :timezone
       f.input :wheelchair_boarding
-      f.input :station_id
       f.input :agency_id
       f.input :directions
       f.input :diction, as: :text
@@ -96,7 +95,6 @@ ActiveAdmin.register Stop do
       row :parent_station
       row :timezone
       row :wheelchair_boarding
-      row :station_id
       row :agency_id
       row :directions
       row :diction, as: :text

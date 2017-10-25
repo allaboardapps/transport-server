@@ -22,8 +22,8 @@ ActiveAdmin.register SessionLog do
     column :state do |session_log|
       "<span class='session-state #{session_log.session_state}'>#{session_log.session_state}</span>".html_safe
     end
-    column "Station ID", :slot_station_id
-    column "Station Name", :slot_station_name
+    column "Stop ID", :slot_stop_id
+    column "Stop Name", :slot_stop_name
     column "Route", :slot_route
     column "Direction", :slot_direction
     column :created_at do |session_log|
@@ -58,8 +58,8 @@ ActiveAdmin.register SessionLog do
       row "Request ID" do
         session_log.shortened_request_id
       end
-      row :slot_station_id
-      row :slot_station_name
+      row :slot_stop_id
+      row :slot_stop_name
       row :slot_direction
       row :slot_route
       row :ssml

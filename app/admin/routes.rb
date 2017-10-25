@@ -28,7 +28,6 @@ ActiveAdmin.register Route do
   filter :agency, as: :select
   filter :name
   filter :short_name
-  filter :system_identifier
   filter :external_id
   filter :description
   filter :route_type
@@ -37,7 +36,7 @@ ActiveAdmin.register Route do
     column "Short ID" do |route|
       link_to route.id_shortened, admin_route_path(route) if route.id_shortened.present?
     end
-    column "System" do |route|
+    column "Agency" do |route|
       link_to route.agency.acronym, admin_agency_path(route.agency)
     end
     column :name
@@ -85,4 +84,3 @@ ActiveAdmin.register Route do
     end
   end
 end
-
