@@ -1,0 +1,9 @@
+route_id,route_short_name,route_long_name,route_type,route_url,route_color,route_text_color
+Red,red,Red Line,train,http://www.transitchicago.com/riding_cta/systemguide/redline.aspx,C60C30,FFFFFF
+P,purple,Purple Line,train,http://www.transitchicago.com/riding_cta/systemguide/purpleline.aspx,522398,FFFFFF
+Y,yellow,Yellow Line,train,http://www.transitchicago.com/riding_cta/systemguide/yellowline.aspx,F9E300,0
+Blue,blue,Blue Line,train,http://www.transitchicago.com/riding_cta/systemguide/blueline.aspx,00A1DE,FFFFFF
+Pink,pink,Pink Line,train,http://www.transitchicago.com/riding_cta/systemguide/pinkline.aspx,E27EA6,FFFFFF
+G,green,Green Line,train,http://www.transitchicago.com/riding_cta/systemguide/greenline.aspx,009B3A,FFFFFF
+Org,orange,Orange Line,train,http://www.transitchicago.com/riding_cta/systemguide/orangeline.aspx,F9461C,FFFFFF
+Brn,brown,Brown Line,train,http://www.transitchicago.com/riding_cta/systemguide/brownline.aspx,62361B,FFFFFF

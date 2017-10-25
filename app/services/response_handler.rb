@@ -5,7 +5,7 @@ class ResponseHandler
     if intent == Intents::STOP_DIRECT
       stop_id_slot = payload[:request][:slots][:stop_id]
       direction_slot = payload[:request][:slots][:direction]
-      stop_id = Stop.validate_by_stopid(stopid: stop_id_slot)
+      stop_id = Stop.validate_by_stop_id(stop_id: stop_id_slot)
       direction = Direction.validate_by_name(name: direction_slot)
 
       payload[:response][:slots][:stop_id] = stop_id[:value]

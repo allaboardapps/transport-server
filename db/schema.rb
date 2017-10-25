@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 20170820225307) do
     t.string "application_id"
     t.string "user_id"
     t.string "request_id"
-    t.string "slot_station_id"
-    t.string "slot_station_name"
+    t.string "slot_stop_id"
+    t.string "slot_stop_name"
     t.string "slot_direction"
     t.string "slot_route"
     t.string "ssml"
@@ -84,25 +84,6 @@ ActiveRecord::Schema.define(version: 20170820225307) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.jsonb "cta_response_body"
-  end
-
-  create_table "stations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "id_shortened"
-    t.string "external_id"
-    t.uuid "agency_id"
-    t.uuid "direction_id"
-    t.uuid "route_id"
-    t.string "name"
-    t.integer "mapid"
-    t.integer "stopid"
-    t.string "stop_name"
-    t.string "description"
-    t.string "latitude"
-    t.string "longitude"
-    t.string "station_type"
-    t.jsonb "diction"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "stops", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -119,11 +100,10 @@ ActiveRecord::Schema.define(version: 20170820225307) do
     t.string "parent_station"
     t.string "timezone", comment: "GTFS agency_timezone, http://en.wikipedia.org/wiki/List_of_tz_zones"
     t.integer "wheelchair_boarding", comment: "0: no accessibility info, 1: wheelchair might use, 2: wheelchair boarding is not possible"
-    t.uuid "station_id", comment: "custom"
-    t.uuid "route_id", comment: "custom"
-    t.string "station_type", comment: "custom"
     t.uuid "agency_id", comment: "custom"
-    t.string "directions", default: [], comment: "custom", array: true
+    t.uuid "route_id", comment: "custom"
+    t.uuid "direction_id", comment: "custom"
+    t.string "station_type", comment: "custom"
     t.jsonb "diction", comment: "custom"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -133,25 +113,20 @@ ActiveRecord::Schema.define(version: 20170820225307) do
   create_view "cta_train_locations", materialized: true,  sql_definition: <<-SQL
       SELECT row_number() OVER () AS id,
       stops.name AS stop_name,
-      stations.name AS station_name,
       routes.name AS route_name,
       directions.name AS direction_name,
       stops.external_id AS stop_external_id,
-      stations.external_id AS station_external_id,
       routes.external_id AS route_external_id,
       directions.external_id AS direction_external_id,
       stops.id AS stop_id,
-      stations.id AS station_id,
       routes.id AS route_id,
       directions.id AS direction_id,
-      stations.diction AS station_diction,
       stops.diction AS stop_diction,
       routes.diction AS route_diction,
       directions.diction AS direction_diction
-     FROM (((stops
-       LEFT JOIN stations ON ((stations.id = stops.station_id)))
-       JOIN directions ON ((directions.id = stations.direction_id)))
-       JOIN routes ON ((routes.id = stations.route_id)));
+     FROM ((stops
+       JOIN directions ON ((directions.id = stops.direction_id)))
+       JOIN routes ON ((routes.id = stops.route_id)));
   SQL
 
 end

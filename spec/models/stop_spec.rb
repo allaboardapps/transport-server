@@ -3,6 +3,7 @@ require "rails_helper"
 describe Stop, type: :model do
   it { is_expected.to belong_to :agency }
   it { is_expected.to belong_to :route }
+  it { is_expected.to belong_to :direction }
 
   describe "validations" do
     it "has a valid factory" do

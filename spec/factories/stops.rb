@@ -7,7 +7,6 @@ FactoryBot.define do
     longitude { Faker::Address.longitude }
     station_type { StationTypes::TRAIN }
     wheelchair_boarding true
-    directions [DirectionNames::NORTH, DirectionNames::EAST]
     diction(en: "18th (Pink Line)", es: "18th (Pink Line)")
   end
 end

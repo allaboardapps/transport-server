@@ -7,6 +7,7 @@ class Stop < ApplicationRecord
 
   belongs_to :route
   belongs_to :agency
+  belongs_to :direction
 
   def self.options_for_select
     all.map { |item| [item.name, item.id] }
@@ -26,7 +27,7 @@ class Stop < ApplicationRecord
 
   def self.validate_by_stop_id(stop_id:)
     return { name: Slots::STOP_ID, present: false, valid: false, value: nil } if stop_id.blank?
-    return { name: Slots::STOP_ID, present: true, valid: true, value: stop_id } if find_by(stop_id: stop_id).present?
+    return { name: Slots::STOP_ID, present: true, valid: true, value: stop_id } if find_by(external_id: stop_id).present?
     { name: Slots::STOP_ID, present: true, valid: false, value: stop_id }
   end
 

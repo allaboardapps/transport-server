@@ -61,22 +61,29 @@ file_path = Rails.root.join("db", "imports", "cta_stops_trains_brown.csv")
 csv_text = open(file_path)
 csv = CSV.parse(csv_text, headers: true)
 csv.each do |row|
-  Stop.create_with(
-    agency: agency,
-    external_id: row["stop_id"],
-    code: row["stop_code"],
-    name: row["stop_name"],
-    description: row["stop_desc"],
-    latitude: row["stop_lat"],
-    longitude: row["stop_lon"],
-    location_type: row["location_type"],
-    parent_station: row["parent_station"],
-    timezone: row["timezone"],
-    station_type: StationTypes::TRAIN,
-    wheelchair_boarding: row["wheelchair_boarding"],
-    diction: { en: row["stop_name"], es: row["stop_name"] }
-  ).find_or_create_by(agency_id: agency.id, external_id: row["stop_id"])
-  puts "ACTION: Creating stop #{row["stop_id"]}"
+  direction = Direction.find_by(name: row["direction_name"])
+  route = Route.find_by(external_id: row["route_name"])
+
+  if direction && route
+    Stop.create_with(
+      agency: agency,
+      direction: direction,
+      route: route,
+      external_id: row["stop_id"],
+      code: row["stop_code"],
+      name: row["stop_name"],
+      description: row["stop_desc"],
+      latitude: row["stop_lat"],
+      longitude: row["stop_lon"],
+      location_type: row["location_type"],
+      parent_station: row["parent_station"],
+      timezone: row["timezone"],
+      station_type: StationTypes::TRAIN,
+      wheelchair_boarding: row["wheelchair_boarding"],
+      diction: { en: row["stop_name"], es: row["stop_name"] }
+    ).find_or_create_by(agency_id: agency.id, external_id: row["stop_id"])
+    puts "ACTION: Creating stop #{row["stop_id"]}"
+  end
 end
 puts "END:   Create stops, Actives Count: #{Stop.all.count}"
 

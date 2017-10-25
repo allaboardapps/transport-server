@@ -57,11 +57,10 @@ class InitialMigration < ActiveRecord::Migration[5.1]
       t.string   "parent_station"
       t.string   "timezone", comment: "GTFS agency_timezone, http://en.wikipedia.org/wiki/List_of_tz_zones"
       t.integer  "wheelchair_boarding", comment: "0: no accessibility info, 1: wheelchair might use, 2: wheelchair boarding is not possible"
-      t.uuid     "station_id", comment: "custom"
-      t.uuid     "route_id", comment: "custom"
-      t.string   "station_type", comment: "custom"
       t.uuid     "agency_id", comment: "custom"
-      t.string   "directions", array: true, default: [], comment: "custom"
+      t.uuid     "route_id", comment: "custom"
+      t.uuid     "direction_id", comment: "custom"
+      t.string   "station_type", comment: "custom"
       t.jsonb    "diction", comment: "custom"
       t.timestamps
     end

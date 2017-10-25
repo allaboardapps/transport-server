@@ -17,5 +17,5 @@ FROM
 INNER JOIN directions
   ON directions.id = stops.direction_id
 INNER JOIN routes
-  ON routes.id = stations.route_id;
+  ON routes.id = stops.route_id;
 

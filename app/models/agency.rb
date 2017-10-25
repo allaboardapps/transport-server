@@ -5,6 +5,7 @@ class Agency < ApplicationRecord
     update(id_shortened: id.slice(0..7))
   end
 
+  has_many :directions
   has_many :routes
   has_many :stops
 

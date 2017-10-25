@@ -6,6 +6,7 @@ class Direction < ApplicationRecord
   end
 
   belongs_to :agency
+  has_many :stops
 
   scope :actives, -> { where(fake: false) }
   scope :fakes, -> { where(fake: true) }
